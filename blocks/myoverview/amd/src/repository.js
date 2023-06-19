@@ -16,7 +16,7 @@
 /**
  * A javascript module to retrieve enrolled coruses from the server.
  *
- * @module block_myoverview/repository
+ * @package    block_myoverview
  * @copyright  2018 Bas Brands <base@moodle.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

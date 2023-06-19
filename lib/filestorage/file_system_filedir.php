@@ -391,14 +391,7 @@ class file_system_filedir extends file_system {
             ignore_user_abort($prev);
             throw new file_exception('storedfilecannotcreatefile');
         }
-        if (!rename($hashfile.'.tmp', $hashfile)) {
-            // Something very strange went wrong.
-            @unlink($hashfile . '.tmp');
-            // Note, we don't try to clean up $hashfile. Almost certainly, if it exists
-            // (e.g. written by another process?) it will be right, so don't wipe it.
-            ignore_user_abort($prev);
-            throw new file_exception('storedfilecannotcreatefile');
-        }
+        rename($hashfile.'.tmp', $hashfile);
         chmod($hashfile, $this->filepermissions); // Fix permissions if needed.
         @unlink($hashfile.'.tmp'); // Just in case anything fails in a weird way.
         ignore_user_abort($prev);
@@ -472,14 +465,7 @@ class file_system_filedir extends file_system {
             ignore_user_abort($prev);
             throw new file_exception('storedfilecannotcreatefile');
         }
-        if (!rename($hashfile.'.tmp', $hashfile)) {
-            // Something very strange went wrong.
-            @unlink($hashfile . '.tmp');
-            // Note, we don't try to clean up $hashfile. Almost certainly, if it exists
-            // (e.g. written by another process?) it will be right, so don't wipe it.
-            ignore_user_abort($prev);
-            throw new file_exception('storedfilecannotcreatefile');
-        }
+        rename($hashfile.'.tmp', $hashfile);
         chmod($hashfile, $this->filepermissions); // Fix permissions if needed.
         @unlink($hashfile.'.tmp'); // Just in case anything fails in a weird way.
         ignore_user_abort($prev);

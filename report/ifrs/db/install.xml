@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="report/ifrs/db" VERSION="20120122" COMMENT="XMLDB file for Page module"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+  <TABLE NAME="ifrs_sistec" COMMENT="Cursos do IFRS">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+		<FIELD NAME="dia" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+		<FIELD NAME="cpf" TYPE="char" LENGTH="13" NOTNULL="true" SEQUENCE="false"/>
+		<FIELD NAME="studentname" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+		<FIELD NAME="cor" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+		<FIELD NAME="renda" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+		<FIELD NAME="coursename" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+		<FIELD NAME="email" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+		<FIELD NAME="instituicao" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+		<FIELD NAME="campus" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+		<FIELD NAME="situacao" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
+  </TABLES>
+</XMLDB>

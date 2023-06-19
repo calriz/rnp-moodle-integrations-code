@@ -35,14 +35,16 @@ Feature: Authentication
     And I press "Log in"
     Then I should see "Invalid login, please try again"
 
-  Scenario: Log out using the Log out link
+  Scenario: Log out
     Given I log in as "admin"
-    When I click on "Log out" "link" in the "#page-footer" "css_element"
+    When I log out
     Then I should see "You are not logged in" in the "page-footer" "region"
 
   Scenario Outline: Checking the display of the Remember username checkbox
-    Given the following config values are set as admin:
+    Given I log in as "admin"
+    And I set the following administration settings values:
       | rememberusername | <settingvalue> |
+    And I log out
     And I am on homepage
     When I click on "Log in" "link" in the ".logininfo" "css_element"
     Then I should <expect> "Remember username"

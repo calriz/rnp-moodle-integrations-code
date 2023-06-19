@@ -77,8 +77,8 @@ class block_settings_renderer extends plugin_renderer_base {
             $content = $this->output->render($item);
             $id = $item->id ? $item->id : html_writer::random_id();
             $ulattr = ['id' => $id . '_group', 'role' => 'group'];
-            $liattr = ['class' => [$item->get_css_type(), 'depth_'.$depth], 'tabindex' => '-1', 'role' => 'treeitem'];
-            $pattr = ['class' => ['tree_item']];
+            $liattr = ['class' => [$item->get_css_type(), 'depth_'.$depth], 'tabindex' => '-1'];
+            $pattr = ['class' => ['tree_item'], 'role' => 'treeitem'];
             $pattr += !empty($item->id) ? ['id' => $item->id] : [];
             $hasicon = (!$isbranch && $item->icon instanceof renderable);
 
@@ -86,15 +86,15 @@ class block_settings_renderer extends plugin_renderer_base {
                 $liattr['class'][] = 'contains_branch';
                 if (!$item->forceopen || (!$item->forceopen && $item->collapse) || ($item->children->count() == 0
                         && $item->nodetype == navigation_node::NODETYPE_BRANCH)) {
-                    $liattr += ['aria-expanded' => 'false'];
+                    $pattr += ['aria-expanded' => 'false'];
                 } else {
-                    $liattr += ['aria-expanded' => 'true'];
+                    $pattr += ['aria-expanded' => 'true'];
                 }
                 if ($item->requiresajaxloading) {
-                    $liattr['data-requires-ajax'] = 'true';
-                    $liattr['data-loaded'] = 'false';
+                    $pattr['data-requires-ajax'] = 'true';
+                    $pattr['data-loaded'] = 'false';
                 } else {
-                    $liattr += ['aria-owns' => $id . '_group'];
+                    $pattr += ['aria-owns' => $id . '_group'];
                 }
             } else if ($hasicon) {
                 $liattr['class'][] = 'item_with_icon';
@@ -106,6 +106,7 @@ class block_settings_renderer extends plugin_renderer_base {
             if (!empty($item->classes) && count($item->classes) > 0) {
                 $pattr['class'] = array_merge($pattr['class'], $item->classes);
             }
+            $nodetextid = 'label_' . $depth . '_' . $number;
 
             // class attribute on the div item which only contains the item content
             $pattr['class'][] = 'tree_item';
@@ -118,7 +119,7 @@ class block_settings_renderer extends plugin_renderer_base {
             $liattr['class'] = join(' ', $liattr['class']);
             $pattr['class'] = join(' ', $pattr['class']);
 
-            if (isset($liattr['aria-expanded']) && $liattr['aria-expanded'] === 'false') {
+            if (isset($pattr['aria-expanded']) && $pattr['aria-expanded'] === 'false') {
                 $ulattr += ['aria-hidden' => 'true'];
             }
 
@@ -126,6 +127,7 @@ class block_settings_renderer extends plugin_renderer_base {
             if (!empty($item->preceedwithhr) && $item->preceedwithhr===true) {
                 $content = html_writer::empty_tag('hr') . $content;
             }
+            $liattr['aria-labelledby'] = $nodetextid;
             $content = html_writer::tag('li', $content, $liattr);
             $lis[] = $content;
         }

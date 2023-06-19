@@ -14,9 +14,11 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Contain the logic for the delete modal.
+ * Contain the logic for the save/cancel modal.
  *
  * @module     core_calendar/modal_delete
+ * @class      modal_delete
+ * @package    core_calendar
  * @copyright  2017 Andrew Nicols <andrew@nicols.co.uk>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -49,7 +51,6 @@ function(
     /**
      * Constructor for the Modal.
      *
-     * @class
      * @param {object} root The root jQuery element for the modal
      */
     var ModalDelete = function(root) {

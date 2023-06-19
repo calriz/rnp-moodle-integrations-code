@@ -34,8 +34,10 @@ Feature: Edit activities in social activities block
 
   @javascript
   Scenario: Activities in social activities block can be made available but not visible on a course page
-    Given the following config values are set as admin:
+    And I log in as "admin"
+    And I set the following administration settings values:
       | allowstealth | 1 |
+    And I log out
     And I log in as "user1"
     And I am on "Course 1" course homepage with editing mode on
     And I add the "Recent activity" block

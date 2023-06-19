@@ -21,6 +21,7 @@
  * triggered within the calendar UI.
  *
  * @module     core_calendar/calendar
+ * @package    core_calendar
  * @copyright  2017 Simey Lameze <simey@moodle.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

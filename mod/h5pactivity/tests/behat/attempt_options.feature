@@ -36,7 +36,9 @@ Feature: Attempts review settings.
       | duration        | 4           |
       | completion      | 1           |
       | success         | 1           |
-    When I am on the "H5P package" "h5pactivity activity" page logged in as student1
+    When I log in as "student1"
+    And I am on "Course 1" course homepage
+    And I follow "H5P package"
     Then I should see "View my attempts"
     And I should not see "This content is displayed in preview mode"
 
@@ -59,7 +61,9 @@ Feature: Attempts review settings.
       | duration        | 4           |
       | completion      | 1           |
       | success         | 1           |
-    When I am on the "H5P package" "h5pactivity activity" page logged in as student1
+    When I log in as "student1"
+    And I am on "Course 1" course homepage
+    And I follow "H5P package"
     Then I should not see "View my attempts"
     And I should not see "This content is displayed in preview mode"
 
@@ -81,7 +85,9 @@ Feature: Attempts review settings.
       | duration        | 4           |
       | completion      | 1           |
       | success         | 1           |
-    When I am on the "H5P package" "h5pactivity activity" page logged in as student1
+    When I log in as "student1"
+    And I am on "Course 1" course homepage
+    And I follow "H5P package"
     Then I should not see "View my attempts"
     And I should see "This content is displayed in preview mode"
 
@@ -104,7 +110,9 @@ Feature: Attempts review settings.
       | duration        | 4           |
       | completion      | 1           |
       | success         | 1           |
-    When I am on the "H5P package" "h5pactivity activity" page logged in as teacher1
+    When I log in as "teacher1"
+    And I am on "Course 1" course homepage
+    And I follow "H5P package"
     Then I should see "View all attempts (1 submitted)"
     And I should see "This content is displayed in preview mode"
 
@@ -127,6 +135,8 @@ Feature: Attempts review settings.
       | duration        | 4           |
       | completion      | 1           |
       | success         | 1           |
-    When I am on the "H5P package" "h5pactivity activity" page logged in as teacher1
+    When I log in as "teacher1"
+    And I am on "Course 1" course homepage
+    And I follow "H5P package"
     Then I should see "View all attempts (1 submitted)"
     And I should see "This content is displayed in preview mode"

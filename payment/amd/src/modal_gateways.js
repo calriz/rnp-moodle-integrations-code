@@ -17,6 +17,7 @@
  * Contain the logic for the gateways modal: A modal with proceed and cancel buttons.
  *
  * @module     core_payment/modal_gateways
+ * @package    core_payment
  * @copyright  2020 Shamim Rezaie <shamim@moodle.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

@@ -35,13 +35,14 @@ class block_private_files_renderer extends plugin_renderer_base {
     }
 
     public function render_private_files_tree(private_files_tree $tree) {
+        $module = array('name'=>'block_private_files', 'fullpath'=>'/blocks/private_files/module.js', 'requires'=>array('yui2-treeview'));
         if (empty($tree->dir['subdirs']) && empty($tree->dir['files'])) {
             $html = $this->output->box(get_string('nofilesavailable', 'repository'));
         } else {
             $htmlid = 'private_files_tree_'.uniqid();
-            $this->page->requires->js_call_amd('block_private_files/files_tree', 'init', [$htmlid]);
+            $this->page->requires->js_init_call('M.block_private_files.init_tree', array(false, $htmlid));
             $html = '<div id="'.$htmlid.'">';
-            $html .= $this->htmllize_tree($tree, $tree->dir, true);
+            $html .= $this->htmllize_tree($tree, $tree->dir);
             $html .= '</div>';
         }
 
@@ -49,39 +50,26 @@ class block_private_files_renderer extends plugin_renderer_base {
     }
 
     /**
-     * Internal function - creates htmls structure suitable for core/tree AMD.
-     *
-     * @param private_files_tree $tree The renderable tree.
-     * @param array $dir The directory in the tree
-     * @param bool $isroot If it is the root directory in the tree.
-     * @return string
+     * Internal function - creates htmls structure suitable for YUI tree.
      */
-    protected function htmllize_tree($tree, $dir, $isroot) {
+    protected function htmllize_tree($tree, $dir) {
         global $CFG;
+        $yuiconfig = array();
+        $yuiconfig['type'] = 'html';
 
         if (empty($dir['subdirs']) and empty($dir['files'])) {
             return '';
         }
-        if ($isroot) {
-            $result = '<ul role="tree" aria-label="' . s(get_string('privatefiles')) . '">';
-        } else {
-            $result = '<ul role="group" aria-hidden="true">';
-        }
+        $result = '<ul>';
         foreach ($dir['subdirs'] as $subdir) {
-            $image = $this->output->pix_icon(file_folder_icon(), '');
-            $content = $this->htmllize_tree($tree, $subdir, false);
-            if ($content) {
-                $result .= '<li role="treeitem" aria-expanded="false"><p>' . $image . s($subdir['dirname']) . '</p>' .
-                    $content . '</li>';
-            } else {
-                $result .= '<li role="treeitem"><p>' . $image . s($subdir['dirname']) . '</p></li>';
-            }
+            $image = $this->output->pix_icon(file_folder_icon(), $subdir['dirname'], 'moodle', array('class'=>'icon'));
+            $result .= '<li yuiConfig=\''.json_encode($yuiconfig).'\'><div>'.$image.s($subdir['dirname']).'</div> '.$this->htmllize_tree($tree, $subdir).'</li>';
         }
         foreach ($dir['files'] as $file) {
             $url = file_encode_url("$CFG->wwwroot/pluginfile.php", '/'.$tree->context->id.'/user/private'.$file->get_filepath().$file->get_filename(), true);
             $filename = $file->get_filename();
-            $image = $this->output->pix_icon(file_file_icon($file), '');
-            $result .= '<li role="treeitem">'.html_writer::link($url, $image.$filename, ['tabindex' => -1]).'</li>';
+            $image = $this->output->pix_icon(file_file_icon($file), $filename, 'moodle', array('class'=>'icon'));
+            $result .= '<li yuiConfig=\''.json_encode($yuiconfig).'\'><div>'.html_writer::link($url, $image.$filename).'</div></li>';
         }
         $result .= '</ul>';
 

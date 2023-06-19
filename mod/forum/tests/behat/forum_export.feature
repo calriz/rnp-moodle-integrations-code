@@ -22,7 +22,9 @@ Feature: Export forum
       | forum      | Test forum 1 | Test forum 1 description  | general   | C1     | 123      |
 
   Scenario: Teacher can export forum
-    Given I am on the "Test forum 1" "forum activity" page logged in as teacher1
+    Given I log in as "teacher1"
+    And I am on "Course 1" course homepage
+    When I follow "Test forum 1"
     And I navigate to "Export" in current page administration
     And I open the autocomplete suggestions list
     And I should see "Student 1" in the ".form-autocomplete-suggestions" "css_element"
@@ -33,7 +35,9 @@ Feature: Export forum
     And I log out
 
   Scenario: Students cannot export forum by default
-    Given I am on the "Test forum 1" "forum activity" page logged in as student1
+    Given I log in as "student1"
+    And I am on "Course 1" course homepage
+    When I follow "Test forum 1"
     Then "Export" "link" should not exist in current page administration
     And I log out
 
@@ -41,7 +45,9 @@ Feature: Export forum
     Given the following "permission overrides" exist:
       | capability                  | permission | role           | contextlevel | reference |
       | mod/forum:exportforum       | Allow      | student        | Course       | C1        |
-    When I am on the "Test forum 1" "forum activity" page logged in as student1
+    When I log in as "student1"
+    And I am on "Course 1" course homepage
+    And I follow "Test forum 1"
     And I navigate to "Export" in current page administration
     And I open the autocomplete suggestions list
     And I should see "Student 1" in the ".form-autocomplete-suggestions" "css_element"

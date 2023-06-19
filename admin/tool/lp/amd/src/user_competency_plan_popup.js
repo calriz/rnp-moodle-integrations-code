@@ -16,7 +16,7 @@
 /**
  * Module to open user competency plan in popup
  *
- * @module     tool_lp/user_competency_plan_popup
+ * @package    report_competency
  * @copyright  2016 Issam Taboubi <issam.taboubi@umontreal.ca>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -116,11 +116,11 @@ define(['jquery', 'core/notification', 'core/str', 'core/ajax', 'core/templates'
         }).fail(notification.exception);
     };
 
-    /** @property {String} The selector for the region with the user competencies */
+    /** @type {String} The selector for the region with the user competencies */
     UserCompetencyPopup.prototype._regionSelector = null;
-    /** @property {String} The selector for the region with a single user competencies */
+    /** @type {String} The selector for the region with a single user competencies */
     UserCompetencyPopup.prototype._userCompetencySelector = null;
-    /** @property {Number} The plan Id */
+    /** @type {Number} The plan Id */
     UserCompetencyPopup.prototype._planId = null;
 
     return /** @alias module:tool_lp/user_competency_plan_popup */ UserCompetencyPopup;

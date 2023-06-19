@@ -35,7 +35,7 @@ require_once($CFG->libdir . '/filestorage/file_system.php');
  * @category  phpunit
  * @copyright 2017 Andrew Nicols <andrew@nicols.co.uk>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- * @coversDefaultClass \file_system
+ * @coversDefaultClass file_system
  */
 class core_files_file_system_testcase extends advanced_testcase {
 
@@ -929,89 +929,6 @@ class core_files_file_system_testcase extends advanced_testcase {
      */
     public function test_get_imageinfo_from_path_no_image() {
         $filepath = __FILE__;
-
-        // Get the filesystem mock.
-        $fs = $this->get_testable_mock();
-
-        $method = new ReflectionMethod(file_system::class, 'get_imageinfo_from_path');
-        $method->setAccessible(true);
-        $result = $method->invokeArgs($fs, [$filepath]);
-
-        $this->assertFalse($result);
-    }
-
-    /**
-     * Test that get_imageinfo_from_path returns an appropriate response
-     * for an svg image with viewbox attribute.
-     */
-    public function test_get_imageinfo_from_path_svg_viewbox() {
-        $filepath = __DIR__ . '/fixtures/testimage_viewbox.svg';
-
-        // Get the filesystem mock.
-        $fs = $this->get_testable_mock();
-
-        $method = new ReflectionMethod(file_system::class, 'get_imageinfo_from_path');
-        $method->setAccessible(true);
-        $result = $method->invokeArgs($fs, [$filepath]);
-
-        $this->assertArrayHasKey('width', $result);
-        $this->assertArrayHasKey('height', $result);
-        $this->assertArrayHasKey('mimetype', $result);
-        $this->assertEquals(100, $result['width']);
-        $this->assertEquals(100, $result['height']);
-        $this->assertStringContainsString('image/svg', $result['mimetype']);
-    }
-
-    /**
-     * Test that get_imageinfo_from_path returns an appropriate response
-     * for an svg image with width and height attributes.
-     */
-    public function test_get_imageinfo_from_path_svg_with_width_height() {
-        $filepath = __DIR__ . '/fixtures/testimage_width_height.svg';
-
-        // Get the filesystem mock.
-        $fs = $this->get_testable_mock();
-
-        $method = new ReflectionMethod(file_system::class, 'get_imageinfo_from_path');
-        $method->setAccessible(true);
-        $result = $method->invokeArgs($fs, [$filepath]);
-
-        $this->assertArrayHasKey('width', $result);
-        $this->assertArrayHasKey('height', $result);
-        $this->assertArrayHasKey('mimetype', $result);
-        $this->assertEquals(100, $result['width']);
-        $this->assertEquals(100, $result['height']);
-        $this->assertStringContainsString('image/svg', $result['mimetype']);
-    }
-
-    /**
-     * Test that get_imageinfo_from_path returns an appropriate response
-     * for an svg image without attributes.
-     */
-    public function test_get_imageinfo_from_path_svg_without_attribute() {
-        $filepath = __DIR__ . '/fixtures/testimage.svg';
-
-        // Get the filesystem mock.
-        $fs = $this->get_testable_mock();
-
-        $method = new ReflectionMethod(file_system::class, 'get_imageinfo_from_path');
-        $method->setAccessible(true);
-        $result = $method->invokeArgs($fs, [$filepath]);
-
-        $this->assertArrayHasKey('width', $result);
-        $this->assertArrayHasKey('height', $result);
-        $this->assertArrayHasKey('mimetype', $result);
-        $this->assertEquals(800, $result['width']);
-        $this->assertEquals(600, $result['height']);
-        $this->assertStringContainsString('image/svg', $result['mimetype']);
-    }
-
-    /**
-     * Test that get_imageinfo_from_path returns an appropriate response
-     * for a file which is not an correct svg.
-     */
-    public function test_get_imageinfo_from_path_svg_invalid() {
-        $filepath = __DIR__ . '/fixtures/testimage_error.svg';
 
         // Get the filesystem mock.
         $fs = $this->get_testable_mock();

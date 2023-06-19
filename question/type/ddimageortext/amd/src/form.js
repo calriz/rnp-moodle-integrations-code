@@ -17,6 +17,7 @@
  * JavaScript to allow dragging options to slots (using mouse down or touch) or tab through slots using keyboard.
  *
  * @module     qtype_ddimageortext/form
+ * @package    qtype_ddimageortext
  * @copyright  2018 The Open University
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -31,27 +32,22 @@ define(['jquery', 'core/dragdrop'], function($, dragDrop) {
      */
     var dragDropToImageForm = {
         /**
-         * @var {Object} maxBgImageSize Properties width and height.
-         * @private
+         * @var {Object} with properties width and height.
          */
         maxBgImageSize: null,
 
         /**
-         * @var {Object} maxDragImageSize with properties width and height.
-         * @private
+         * @var {Object} with properties width and height.
          */
         maxDragImageSize: null,
 
         /**
-         * @property {object} fp for interacting with the file pickers.
-         * @private
+         * @var {object} for interacting with the file pickers.
          */
         fp: null, // Object containing functions associated with the file picker.
 
         /**
          * Initialise the form javascript features.
-         *
-         * @method
          */
         init: function() {
             dragDropToImageForm.fp = dragDropToImageForm.filePickers();
@@ -507,7 +503,13 @@ define(['jquery', 'core/dragdrop'], function($, dragDrop) {
         }
     };
 
+    /**
+     * @alias module:qtype_ddimageortext/form
+     */
     return {
+        /**
+         * Initialise the form JavaScript features.
+         */
         init: dragDropToImageForm.init
     };
 });

@@ -6,23 +6,26 @@ Feature: Test editing a Description question
 
   Background:
     Given the following "users" exist:
-      | username |
-      | teacher  |
+      | username | firstname | lastname | email                |
+      | teacher1 | T1        | Teacher1 | teacher1@example.com |
     And the following "courses" exist:
       | fullname | shortname | category |
       | Course 1 | C1        | 0        |
     And the following "course enrolments" exist:
-      | user    | course | role           |
-      | teacher | C1     | editingteacher |
+      | user     | course | role           |
+      | teacher1 | C1     | editingteacher |
     And the following "question categories" exist:
       | contextlevel | reference | name           |
       | Course       | C1        | Test questions |
     And the following "questions" exist:
       | questioncategory | qtype       | name            | template |
       | Test questions   | description | description-001 | info     |
+    And I log in as "teacher1"
+    And I am on "Course 1" course homepage
+    And I navigate to "Question bank" in current page administration
 
   Scenario: Edit a Description question
-    When I am on the "description-001" "core_question > edit" page logged in as teacher
+    When I choose "Edit question" action for "description-001" in the question bank
     And I set the following fields to these values:
       | Question name | |
     And I press "id_submitbutton"

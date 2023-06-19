@@ -29,7 +29,9 @@ Feature: Add scorm activity
     And I should see "Normal"
     And I should see "Preview"
     And I log out
-    And I am on the "Awesome SCORM package" "scorm activity" page logged in as student1
+    And I log in as "student1"
+    And I am on "Course 1" course homepage
+    And I follow "Awesome SCORM package"
     And I should see "Normal"
     And I press "Enter"
     And I switch to "scorm_object" iframe

@@ -2677,12 +2677,8 @@ abstract class quiz_nav_panel_base {
     public function get_question_buttons() {
         $buttons = array();
         foreach ($this->attemptobj->get_slots() as $slot) {
-            $heading = $this->attemptobj->get_heading_before_slot($slot);
-            if (!is_null($heading)) {
-                $sections = $this->attemptobj->get_quizobj()->get_sections();
-                if (!(empty($heading) && count($sections) == 1)) {
-                    $buttons[] = new quiz_nav_section_heading(format_string($heading));
-                }
+            if ($heading = $this->attemptobj->get_heading_before_slot($slot)) {
+                $buttons[] = new quiz_nav_section_heading(format_string($heading));
             }
 
             $qa = $this->attemptobj->get_question_attempt($slot);

@@ -16,7 +16,7 @@
 /**
  * Grade dialogue.
  *
- * @module     tool_lp/grade_dialogue
+ * @package    tool_lp
  * @copyright  2016 Frédéric Massart - FMCorz.net
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -31,8 +31,6 @@ define(['jquery',
 
     /**
      * Grade dialogue class.
-     *
-     * @class tool_lp/grade_dialogue
      * @param {Array} ratingOptions
      */
     var Grade = function(ratingOptions) {
@@ -41,9 +39,9 @@ define(['jquery',
     };
     Grade.prototype = Object.create(EventBase.prototype);
 
-    /** @property {Dialogue} The dialogue. */
+    /** @type {Dialogue} The dialogue. */
     Grade.prototype._popup = null;
-    /** @property {Array} Array of objects containing, 'value', 'name' and optionally 'selected'. */
+    /** @type {Array} Array of objects containing, 'value', 'name' and optionally 'selected'. */
     Grade.prototype._ratingOptions = null;
 
     /**
@@ -99,6 +97,7 @@ define(['jquery',
     /**
      * Opens the picker.
      *
+     * @param {Number} competencyId The competency ID of the competency to work on.
      * @method display
      * @return {Promise}
      */
@@ -150,5 +149,6 @@ define(['jquery',
         return Templates.render('tool_lp/competency_grader', context);
     };
 
-    return Grade;
+    return /** @alias module:tool_lp/grade_dialogue */ Grade;
+
 });

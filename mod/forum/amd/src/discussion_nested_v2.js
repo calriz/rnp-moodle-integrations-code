@@ -16,7 +16,6 @@
 /**
  * Module for viewing a discussion in nested v2 view.
  *
- * @module mod_Forum/discussion_nested_v2
  * @copyright  2019 Ryan Wyllie <ryan@moodle.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -233,7 +232,7 @@ const buildShowInPageReplyFormFunction = (additionalTemplateContext) => {
      *
      * @param {Object} postContainer jQuery element for the post container
      */
-    return async(postContainer) => {
+    return async (postContainer) => {
 
         const inPageReplyContainer = getInPageReplyContainer(postContainer);
         const repliesVisibilityToggleContainer = getRepliesVisibilityToggleContainer(postContainer);

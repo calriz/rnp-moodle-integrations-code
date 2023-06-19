@@ -17,6 +17,8 @@
  * Controls the message preference page.
  *
  * @module     core_message/message_preferences
+ * @class      message_preferences
+ * @package    message
  * @copyright  2016 Ryan Wyllie <ryan@moodle.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -33,7 +35,6 @@ define(['jquery', 'core/ajax', 'core/notification',
     /**
      * Constructor for the MessagePreferences.
      *
-     * @class
      * @param {object} element The root element for the message preferences
      */
     var MessagePreferences = function(element) {

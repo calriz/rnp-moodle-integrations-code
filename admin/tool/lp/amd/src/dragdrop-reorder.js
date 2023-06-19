@@ -17,6 +17,7 @@
  * Drag and drop reorder via HTML5.
  *
  * @module     tool_lp/dragdrop-reorder
+ * @package    tool_lp
  * @copyright  2015 Damyon Wiese <damyon@moodle.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -26,7 +27,7 @@ define(['core/str', 'core/yui'], function(str, Y) {
     /**
      * Store the current instance of the core drag drop.
      *
-     * @property {object} dragDropInstance M.tool_lp.dragdrop_reorder
+     * @property dragDropInstance M.tool_lp.dragdrop_reorder
      */
     var dragDropInstance = null;
 

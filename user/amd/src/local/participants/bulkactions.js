@@ -17,6 +17,7 @@
  * Bulk actions for lists of participants.
  *
  * @module     core_user/local/participants/bulkactions
+ * @package    core_user
  * @copyright  2020 Andrew Nicols <andrew@nicols.co.uk>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

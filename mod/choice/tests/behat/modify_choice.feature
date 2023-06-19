@@ -26,7 +26,10 @@ Feature: Teacher can modify choices of the students
 
   @javascript
   Scenario: Delete students choice response as a teacher
-    Given I am on the "Choice name" "choice activity editing" page logged in as teacher1
+    When I log in as "teacher1"
+    And I am on "Course 1" course homepage
+    And I follow "Choice name"
+    And I navigate to "Edit settings" in current page administration
     And I expand all fieldsets
     And I set the field "Show column for unanswered" to "Yes"
     And I press "Save and return to course"
@@ -39,27 +42,35 @@ Feature: Teacher can modify choices of the students
     And I log out
     And I log in as "teacher1"
     And I change window size to "large"
-    And I am on the "Choice name" "choice activity" page
+    And I am on "Course 1" course homepage
+    And I follow "Choice name"
     And I navigate to "View 1 responses" in current page administration
     And I click on "Student 1 Option 1" "checkbox"
     And I select "Delete" from the "With selected" singleselect
     And "Student 1 Option 1" "checkbox" should not exist
     And "Student 1 Not answered yet" "checkbox" should exist
+    And I log out
 
   @javascript
   Scenario: Teacher set answers of students who did not respond or change existing answers
-    Given I am on the "Choice name" "choice activity editing" page logged in as teacher1
+    When I log in as "teacher1"
+    And I am on "Course 1" course homepage
+    And I follow "Choice name"
+    And I navigate to "Edit settings" in current page administration
     And I expand all fieldsets
     And I set the field "Show column for unanswered" to "Yes"
     And I press "Save and return to course"
     And I log out
-    And I am on the "Course 1" course page logged in as student1
+    And I log in as "student1"
+    And I am on "Course 1" course homepage
     And I choose "Option 1" from "Choice name" choice activity
     Then I should see "Your selection: Option 1"
     And I should see "Your choice has been saved"
     And I log out
+    And I log in as "teacher1"
     And I change window size to "large"
-    And I am on the "Choice name" "choice activity" page logged in as teacher1
+    And I am on "Course 1" course homepage
+    And I follow "Choice name"
     And I navigate to "View 1 responses" in current page administration
     And I click on "Student 1 Option 1" "checkbox"
     And I click on "Student 2 Not answered yet" "checkbox"
@@ -71,38 +82,52 @@ Feature: Teacher can modify choices of the students
     And "Student 1 Option 2" "checkbox" should exist
     And "Student 2 Option 2" "checkbox" should exist
     And "Student 3 Option 2" "checkbox" should exist
+    And I log out
 
   @javascript
   Scenario: Teacher can delete answers in the multiple answer choice
-    Given I am on the "Choice name" "choice activity editing" page logged in as teacher1
+    And I log in as "teacher1"
+    And I am on "Course 1" course homepage
+    And I follow "Choice name"
+    And I navigate to "Edit settings" in current page administration
     And I set the field "Allow more than one choice to be selected" to "Yes"
     And I press "Save and return to course"
     And I log out
-    And I am on the "Course 1" course page logged in as student1
+    And I log in as "student1"
+    And I am on "Course 1" course homepage
     And I choose options "Option 1","Option 2" from "Choice name" choice activity
     And I should see "Your selection: Option 1; Option 2"
     And I should see "Your choice has been saved"
     And I log out
+    And I log in as "teacher1"
     And I change window size to "large"
-    And I am on the "Choice name" "choice activity" page logged in as teacher1
+    And I am on "Course 1" course homepage
+    And I follow "Choice name"
     And I navigate to "View 1 responses" in current page administration
     And I click on "Student 1 Option 2" "checkbox"
     And I select "Delete" from the "With selected" singleselect
     And I click on "Student 1 Option 1" "checkbox"
     And I select "Choose: Option 3" from the "With selected" singleselect
     And I log out
-    And I am on the "Choice name" "choice activity" page logged in as student1
+    And I log in as "student1"
+    And I am on "Course 1" course homepage
+    And I follow "Choice name"
     And I should see "Your selection: Option 1; Option 3"
+    And I log out
 
   @javascript
   Scenario: Teacher can manage answers on view page if the names are displayed
-    Given I am on the "Course 1" course page logged in as student1
+    When I log in as "student1"
+    And I am on "Course 1" course homepage
     And I choose "Option 1" from "Choice name" choice activity
     Then I should see "Your selection: Option 1"
     And I should see "Your choice has been saved"
     And I log out
+    And I log in as "teacher1"
     And I change window size to "large"
-    And I am on the "Choice name" "choice activity editing" page logged in as teacher1
+    And I am on "Course 1" course homepage
+    And I follow "Choice name"
+    And I navigate to "Edit settings" in current page administration
     And I set the following fields to these values:
       | Publish results | Always show results to students |
       | Privacy of results | Publish full results, showing names and their choices |
@@ -119,3 +144,4 @@ Feature: Teacher can modify choices of the students
     And I select "Delete" from the "With selected" singleselect
     And "Student 1 Option 3" "checkbox" should not exist
     And "Student 1 Not answered yet" "checkbox" should exist
+    And I log out

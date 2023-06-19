@@ -33,6 +33,7 @@
  * The place where a given drag started from is called its 'home'.
  *
  * @module     qtype_ddwtos/ddwtos
+ * @package    qtype_ddwtos
  * @copyright  2018 The Open University
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  * @since      3.6
@@ -199,7 +200,7 @@ define(['jquery', 'core/dragdrop', 'core/key_codes'], function($, dragDrop, keys
             drag = $(e.target).closest('.draghome');
 
         var info = dragDrop.prepare(e);
-        if (!info.start || drag.hasClass('beingdragged')) {
+        if (!info.start) {
             return;
         }
 
@@ -735,12 +736,6 @@ define(['jquery', 'core/dragdrop', 'core/key_codes'], function($, dragDrop, keys
         eventHandlersInitialised: false,
 
         /**
-         * {Object} ensures that the drag event handlers are only initialised once per question,
-         * indexed by containerId (id on the .que div).
-         */
-        dragEventHandlersInitialised: {},
-
-        /**
          * {boolean} is keyboard navigation or not.
          */
         isKeyboardNavigation: false,
@@ -762,22 +757,14 @@ define(['jquery', 'core/dragdrop', 'core/key_codes'], function($, dragDrop, keys
                 questionManager.setupEventHandlers();
                 questionManager.eventHandlersInitialised = true;
             }
-            if (!questionManager.dragEventHandlersInitialised.hasOwnProperty(containerId)) {
-                questionManager.dragEventHandlersInitialised[containerId] = true;
-                // We do not use the body event here to prevent the other event on Mobile device, such as scroll event.
-                var questionContainer = document.getElementById(containerId);
-                if (questionContainer.classList.contains('ddwtos') &&
-                    !questionContainer.classList.contains('qtype_ddwtos-readonly')) {
-                    // TODO: Convert all the jQuery selectors and events to native Javascript.
-                    questionManager.addEventHandlersToDrag($(questionContainer).find('span.draghome'));
-                }
-            }
         },
 
         /**
          * Set up the event handlers that make this question type work. (Done once per page.)
          */
         setupEventHandlers: function() {
+            // We do not use the body event here to prevent the other event on Mobile device, such as scroll event.
+            questionManager.addEventHandlersToDrag($('.que.ddwtos:not(.qtype_ddwtos-readonly) span.draghome'));
             $('body')
                 .on('keydown',
                     '.que.ddwtos:not(.qtype_ddwtos-readonly) span.drop',

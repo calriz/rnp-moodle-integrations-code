@@ -17,6 +17,8 @@
  * Load the settings for a message processor.
  *
  * @module     core_message/notification_processor_settings
+ * @class      notification_processor_settings
+ * @package    message
  * @copyright  2016 Ryan Wyllie <ryan@moodle.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -52,7 +54,6 @@ define([
     /**
      * Constructor for the Modal.
      *
-     * @class
      * @param {object} root The root jQuery element for the modal.
      */
     var NotificationProcessorSettings = function(root) {

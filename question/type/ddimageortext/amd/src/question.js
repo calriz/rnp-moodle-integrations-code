@@ -17,6 +17,7 @@
  * JavaScript to allow dragging options to slots (using mouse down or touch) or tab through slots using keyboard.
  *
  * @module     qtype_ddimageortext/question
+ * @package    qtype_ddimageortext
  * @copyright  2018 The Open University
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -310,7 +311,7 @@ define(['jquery', 'core/dragdrop', 'core/key_codes'], function($, dragDrop, keys
             newIndex = currentIndex + 2;
 
         var info = dragDrop.prepare(e);
-        if (!info.start || drag.hasClass('beingdragged')) {
+        if (!info.start) {
             return;
         }
 
@@ -948,12 +949,6 @@ define(['jquery', 'core/dragdrop', 'core/key_codes'], function($, dragDrop, keys
         eventHandlersInitialised: false,
 
         /**
-         * {Object} ensures that the drag event handlers are only initialised once per question,
-         * indexed by containerId (id on the .que div).
-         */
-        dragEventHandlersInitialised: {},
-
-        /**
          * {boolean} is printing or not.
          */
         isPrinting: false,
@@ -971,7 +966,6 @@ define(['jquery', 'core/dragdrop', 'core/key_codes'], function($, dragDrop, keys
         /**
          * Initialise one question.
          *
-         * @method
          * @param {String} containerId the id of the div.que that contains this question.
          * @param {boolean} readOnly whether the question is read-only.
          * @param {Array} places data.
@@ -983,22 +977,14 @@ define(['jquery', 'core/dragdrop', 'core/key_codes'], function($, dragDrop, keys
                 questionManager.setupEventHandlers();
                 questionManager.eventHandlersInitialised = true;
             }
-            if (!questionManager.dragEventHandlersInitialised.hasOwnProperty(containerId)) {
-                questionManager.dragEventHandlersInitialised[containerId] = true;
-                // We do not use the body event here to prevent the other event on Mobile device, such as scroll event.
-                var questionContainer = document.getElementById(containerId);
-                if (questionContainer.classList.contains('ddimageortext') &&
-                    !questionContainer.classList.contains('qtype_ddimageortext-readonly')) {
-                    // TODO: Convert all the jQuery selectors and events to native Javascript.
-                    questionManager.addEventHandlersToDrag($(questionContainer).find('.draghome'));
-                }
-            }
         },
 
         /**
          * Set up the event handlers that make this question type work. (Done once per page.)
          */
         setupEventHandlers: function() {
+            // We do not use the body event here to prevent the other event on Mobile device, such as scroll event.
+            questionManager.addEventHandlersToDrag($('.que.ddimageortext:not(.qtype_ddimageortext-readonly) .draghome'));
             $('body')
                 .on('keydown',
                     '.que.ddimageortext:not(.qtype_ddimageortext-readonly) .dropzones .dropzone',
@@ -1143,6 +1129,13 @@ define(['jquery', 'core/dragdrop', 'core/key_codes'], function($, dragDrop, keys
      * @alias module:qtype_ddimageortext/question
      */
     return {
+        /**
+         * Initialise one drag-drop onto image question.
+         *
+         * @param {String} containerId id of the outer div for this question.
+         * @param {boolean} readOnly whether the question is being displayed read-only.
+         * @param {Array} Information about the drop places.
+         */
         init: questionManager.init
     };
 });

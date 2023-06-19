@@ -6,21 +6,23 @@ Feature: Test creating a Numerical question
 
   Background:
     Given the following "users" exist:
-      | username |
-      | teacher  |
+      | username | firstname | lastname | email               |
+      | teacher1 | T1        | Teacher1 | teacher1@example.com |
     And the following "courses" exist:
       | fullname | shortname | category |
       | Course 1 | C1        | 0        |
     And the following "course enrolments" exist:
-      | user    | course | role           |
-      | teacher | C1     | editingteacher |
+      | user     | course | role           |
+      | teacher1 | C1     | editingteacher |
     And the following "language customisations" exist:
       | component       | stringid | value |
       | core_langconfig | decsep   | #     |
+    And I log in as "teacher1"
+    And I am on "Course 1" course homepage
+    And I navigate to "Question bank" in current page administration
 
   Scenario: Create a Numerical question
-    When I am on the "Course 1" "core_question > course question bank" page logged in as teacher
-    And I add a "Numerical" question filling the form with:
+    When I add a "Numerical" question filling the form with:
       | Question name                      | Numerical-001                          |
       | Question text                      | What is the average of 4, 5, 6 and 10? |
       | Default mark                       | 1                                      |

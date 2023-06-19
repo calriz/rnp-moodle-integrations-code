@@ -17,6 +17,7 @@
  * Javascript to handle changing users via the user selector in the header.
  *
  * @module     mod_assign/grading_navigation
+ * @package    mod_assign
  * @copyright  2016 Damyon Wiese <damyon@moodle.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  * @since      3.1
@@ -28,7 +29,7 @@ define(['jquery', 'core/notification', 'core/str', 'core/form-autocomplete',
     /**
      * GradingNavigation class.
      *
-     * @class mod_assign/grading_navigation
+     * @class GradingNavigation
      * @param {String} selector The selector for the page region containing the user navigation.
      */
     var GradingNavigation = function(selector) {
@@ -78,22 +79,22 @@ define(['jquery', 'core/notification', 'core/str', 'core/form-autocomplete',
         }.bind(this));
     };
 
-    /** @property {Boolean} Boolean tracking active ajax requests. */
+    /** @type {Boolean} Boolean tracking active ajax requests. */
     GradingNavigation.prototype._isLoading = false;
 
-    /** @property {String} Selector for the page region containing the user navigation. */
+    /** @type {String} Selector for the page region containing the user navigation. */
     GradingNavigation.prototype._regionSelector = null;
 
-    /** @property {Array} The list of active filter keys */
+    /** @type {Array} The list of active filter keys */
     GradingNavigation.prototype._filters = null;
 
-    /** @property {Array} The list of users */
+    /** @type {Array} The list of users */
     GradingNavigation.prototype._users = null;
 
-    /** @property {JQuery} JQuery node for the page region containing the user navigation. */
+    /** @type {JQuery} JQuery node for the page region containing the user navigation. */
     GradingNavigation.prototype._region = null;
 
-    /** @property {String} Last active filters */
+    /** @type {String} Last active filters */
     GradingNavigation.prototype._lastFilters = '';
 
     /**
@@ -222,6 +223,7 @@ define(['jquery', 'core/notification', 'core/str', 'core/form-autocomplete',
      *
      * @private
      * @method _filterChanged
+     * @param {Event} event
      */
     GradingNavigation.prototype._filterChanged = function() {
         // There are 3 types of filter right now.
@@ -535,6 +537,7 @@ define(['jquery', 'core/notification', 'core/str', 'core/form-autocomplete',
      *
      * @private
      * @method _handleChangeUser
+     * @param {Event} event
      */
     GradingNavigation.prototype._handleChangeUser = function() {
         var select = this._region.find('[data-action=change-user]');

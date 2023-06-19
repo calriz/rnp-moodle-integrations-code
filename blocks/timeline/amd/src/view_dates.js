@@ -16,6 +16,7 @@
 /**
  * Manage the timeline dates view for the timeline block.
  *
+ * @package    block_timeline
  * @copyright  2018 Ryan Wyllie <ryan@moodle.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -118,7 +119,7 @@ function(
         root = $(root);
         if (root.hasClass('active')) {
             load(root);
-            root.attr('data-seen', true);
+            root.data('seen', true);
         }
     };
 
@@ -132,7 +133,7 @@ function(
         root.removeAttr('data-seen');
         if (root.hasClass('active')) {
             load(root);
-            root.attr('data-seen', true);
+            root.data('seen', true);
         }
     };
 
@@ -142,9 +143,9 @@ function(
      * @param {object} root The root element for the timeline courses view.
      */
     var shown = function(root) {
-        if (!root.attr('data-seen')) {
+        if (!root.data('seen')) {
             load(root);
-            root.attr('data-seen', true);
+            root.data('seen', true);
         }
     };
 

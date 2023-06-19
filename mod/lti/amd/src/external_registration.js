@@ -23,6 +23,8 @@
  * See template: mod_lti/external_registration
  *
  * @module     mod_lti/external_registration
+ * @class      external_registration
+ * @package    mod_lti
  * @copyright  2015 Ryan Wyllie <ryan@moodle.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  * @since      3.1
@@ -627,7 +629,7 @@ define(['jquery', 'core/ajax', 'core/notification', 'core/templates', 'mod_lti/e
         };
     };
 
-    return {
+    return /** @alias module:mod_lti/external_registration */ {
 
         /**
          * Initialise this module.

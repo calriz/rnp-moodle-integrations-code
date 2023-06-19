@@ -18,6 +18,7 @@
  * movement through them.
  *
  * @module     core_calendar/calendar_threemonth
+ * @package    core_calendar
  * @copyright  2017 Andrew Nicols <andrew@nicols.co.uk>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -130,7 +131,7 @@ function(
                     categoryId = miniDayLink.data('categoryid'),
                     calendarRoot = $('body').find(CalendarSelectors.calendarMain);
                 CalendarViewManager.refreshDayContent(calendarRoot, year, month, day, courseId, categoryId,
-                    calendarRoot.find('[id^="calendar-"][data-template^="core_calendar/"]'), 'core_calendar/calendar_day');
+                    calendarRoot, 'core_calendar/calendar_day');
                 e.preventDefault();
                 window.history.pushState({}, '', '?view=day');
         });

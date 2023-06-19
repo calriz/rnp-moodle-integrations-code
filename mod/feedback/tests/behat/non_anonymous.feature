@@ -108,7 +108,9 @@ Feature: Non anonymous feedback
 
   @javascript
   Scenario: Non anonymous feedback in a course
-    When I am on the "Course feedback" "feedback activity" page logged in as teacher
+    When I log in as "teacher"
+    And I am on "Course 1" course homepage
+    And I follow "Course feedback"
     And I click on "Edit questions" "link" in the "[role=main]" "css_element"
     And I add a "Multiple choice" question to the feedback with:
       | Question                       | Do you like this course?           |
@@ -117,14 +119,18 @@ Feature: Non anonymous feedback
       | Hide the "Not selected" option | Yes                                |
       | Multiple choice values         | Yes of course\nNot at all\nI don't know |
     And I log out
-    When I am on the "Course feedback" "feedback activity" page logged in as user1
+    And I log in as "user1"
+    And I am on "Course 1" course homepage
+    And I follow "Course feedback"
     And I follow "Answer the questions"
     And I should see "Do you like this course?"
     And I set the following fields to these values:
       | Yes of course | 1 |
     And I press "Submit your answers"
     And I log out
-    When I am on the "Course feedback" "feedback activity" page logged in as user2
+    And I log in as "user2"
+    And I am on "Course 1" course homepage
+    And I follow "Course feedback"
     And I follow "Answer the questions"
     And I should see "Do you like this course?"
     And I set the following fields to these values:
@@ -139,7 +145,9 @@ Feature: Non anonymous feedback
     And I should see "1 (50.00 %)" in the "Yes of course" "table_row"
     And I should see "1 (50.00 %)" in the "Not at all" "table_row"
     And I log out
-    When I am on the "Course feedback" "feedback activity" page logged in as teacher
+    And I log in as "teacher"
+    And I am on "Course 1" course homepage
+    And I follow "Course feedback"
     And I follow "Preview"
     And I should see "Do you like this course?"
     And I press "Continue"
@@ -162,3 +170,4 @@ Feature: Non anonymous feedback
     And I should see "Non anonymous entries (1)"
     And I should not see "Username 1"
     And I should see "Username 2"
+    And I log out

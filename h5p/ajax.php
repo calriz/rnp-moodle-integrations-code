@@ -25,8 +25,6 @@
 use core_h5p\factory;
 use core_h5p\framework;
 use core_h5p\local\library\autoloader;
-use Moodle\H5PCore;
-use Moodle\H5PEditorEndpoints;
 
 define('AJAX_SCRIPT', true);
 
@@ -57,9 +55,7 @@ switch ($action) {
         $major = optional_param('majorVersion', 0, PARAM_INT);
         $minor = optional_param('minorVersion', 0, PARAM_INT);
 
-        // Normalise Moodle language using underscore, as opposed to H5P which uses dash.
-        $language = optional_param('default-language', null, PARAM_RAW);
-        $language = clean_param(str_replace('-', '_', $language), PARAM_LANG);
+        $language = optional_param('default-language', null, PARAM_ALPHA);
 
         if (!empty($name)) {
             $editor->ajax->action(H5PEditorEndpoints::SINGLE_LIBRARY, $name,

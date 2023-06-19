@@ -17,6 +17,7 @@
  * Define all of the selectors we will be using on the contentbank interface.
  *
  * @module     core_contentbank/selectors
+ * @package    core_contentbank
  * @copyright  2020 Sara Arjona <sara@moodle.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -52,8 +53,6 @@ export default {
     },
     elements: {
         listitem: '.cb-listitem',
-        heading: '.cb-heading',
-        cell: '.cb-column',
         cbnavbarbreadcrumb: '.cb-navbar-breadbrumb',
         cbnavbartotalsearch: '.cb-navbar-totalsearch',
         searchinput: '#searchinput',

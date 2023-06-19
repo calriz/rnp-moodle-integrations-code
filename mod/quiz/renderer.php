@@ -395,14 +395,7 @@ class mod_quiz_renderer extends plugin_renderer_base {
      * @return string HTML fragment.
      */
     protected function render_quiz_nav_section_heading(quiz_nav_section_heading $heading) {
-        if (empty($heading->heading)) {
-            $headingtext = get_string('sectionnoname', 'quiz');
-            $class = ' dimmed_text';
-        } else {
-            $headingtext = $heading->heading;
-            $class = '';
-        }
-        return $this->heading($headingtext, 3, 'mod_quiz-section-heading' . $class);
+        return $this->heading($heading->heading, 3, 'mod_quiz-section-heading');
     }
 
     /**
@@ -543,9 +536,7 @@ class mod_quiz_renderer extends plugin_renderer_base {
         $output .= html_writer::start_tag('div', array('class' => 'submitbtns'));
         if ($page > 0 && $navmethod == 'free') {
             $output .= html_writer::empty_tag('input', array('type' => 'submit', 'name' => 'previous',
-                    'value' => get_string('navigateprevious', 'quiz'), 'class' => 'mod_quiz-prev-nav btn btn-secondary',
-                    'id' => 'mod_quiz-prev-nav'));
-            $this->page->requires->js_call_amd('core_form/submit', 'init', ['mod_quiz-prev-nav']);
+                    'value' => get_string('navigateprevious', 'quiz'), 'class' => 'mod_quiz-prev-nav btn btn-secondary'));
         }
         if ($lastpage) {
             $nextlabel = get_string('endtest', 'quiz');
@@ -553,9 +544,8 @@ class mod_quiz_renderer extends plugin_renderer_base {
             $nextlabel = get_string('navigatenext', 'quiz');
         }
         $output .= html_writer::empty_tag('input', array('type' => 'submit', 'name' => 'next',
-                'value' => $nextlabel, 'class' => 'mod_quiz-next-nav btn btn-primary', 'id' => 'mod_quiz-next-nav'));
+                'value' => $nextlabel, 'class' => 'mod_quiz-next-nav btn btn-primary'));
         $output .= html_writer::end_tag('div');
-        $this->page->requires->js_call_amd('core_form/submit', 'init', ['mod_quiz-next-nav']);
 
         return $output;
     }
@@ -678,16 +668,7 @@ class mod_quiz_renderer extends plugin_renderer_base {
             // Add a section headings if we need one here.
             $heading = $attemptobj->get_heading_before_slot($slot);
             if ($heading) {
-                $heading = format_string($heading);
-            }
-            $sections = $attemptobj->get_quizobj()->get_sections();
-            if (!is_null($heading) && empty($heading) && count($sections) > 1) {
-                $heading = get_string('sectionnoname', 'quiz');
-                $heading = \html_writer::span($heading, 'dimmed_text');
-            }
-
-            if ($heading) {
-                $cell = new html_table_cell($heading);
+                $cell = new html_table_cell(format_string($heading));
                 $cell->header = true;
                 $cell->colspan = $tablewidth;
                 $table->data[] = array($cell);

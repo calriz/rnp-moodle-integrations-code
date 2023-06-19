@@ -17,6 +17,7 @@
  * Unified filter page JS module for the course participants page.
  *
  * @module     tool_policy/acceptances_filter
+ * @package    tool_policy
  * @copyright  2017 Jun Pataleta
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

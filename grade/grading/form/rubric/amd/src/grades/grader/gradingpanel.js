@@ -17,6 +17,7 @@
  * Grading panel for gradingform_rubric.
  *
  * @module     gradingform_rubric/grades/grader/gradingpanel
+ * @package    gradingform_rubric
  * @copyright  2019 Mathew May <mathew.solutions>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

@@ -22,6 +22,8 @@
  * DOM updates that happen on month change don't continue to register handlers.
  *
  * @module     core_calendar/month_navigation_drag_drop
+ * @class      month_navigation_drag_drop
+ * @package    core_calendar
  * @copyright  2017 Ryan Wyllie <ryan@moodle.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -97,8 +99,6 @@ define([
     /**
      * This will add a visual indicator to the calendar UI to
      * indicate which nav link is a valid drop zone.
-     *
-     * @param {Event} e
      */
     var dragstartHandler = function(e) {
         // Make sure the drag event is for a calendar event.

@@ -17,6 +17,7 @@
  * User evidence actions.
  *
  * @module     tool_lp/user_evidence_actions
+ * @package    tool_lp
  * @copyright  2015 Frédéric Massart - FMCorz.net
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -58,15 +59,15 @@ define(['jquery',
         }
     };
 
-    /** @property {String} Ajax method to fetch the page data from. */
+    /** @type {String} Ajax method to fetch the page data from. */
     UserEvidenceActions.prototype._contextMethod = null;
-    /** @property {String} Selector to find the node describing the evidence. */
+    /** @type {String} Selector to find the node describing the evidence. */
     UserEvidenceActions.prototype._evidenceNode = null;
-    /** @property {String} Selector mapping to the region to update. Usually similar to wrapper. */
+    /** @type {String} Selector mapping to the region to update. Usually similar to wrapper. */
     UserEvidenceActions.prototype._region = null;
-    /** @property {String} Name of the template used to render the region. */
+    /** @type {String} Name of the template used to render the region. */
     UserEvidenceActions.prototype._template = null;
-    /** @property {String} Type of page/region we're in. */
+    /** @type {String} Type of page/region we're in. */
     UserEvidenceActions.prototype._type = null;
 
     /**
@@ -195,6 +196,7 @@ define(['jquery',
      *
      * @param {Object} evidenceData Evidence data from evidence node.
      * @param {Number} competencyIds The competency IDs.
+     * @param {Boolean} requestReview Send competencies to review.
      */
     UserEvidenceActions.prototype._doCreateUserEvidenceCompetency = function(evidenceData, competencyIds) {
         var self = this,

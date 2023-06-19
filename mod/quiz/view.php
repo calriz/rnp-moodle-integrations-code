@@ -62,6 +62,22 @@ $canattempt = has_capability('mod/quiz:attempt', $context);
 $canreviewmine = has_capability('mod/quiz:reviewmyattempts', $context);
 $canpreview = has_capability('mod/quiz:preview', $context);
 
+/* customização */
+			
+			$certificado = $DB->get_record_sql("select count(distinct sci.userid) tot
+	from mdl_course c, mdl_simplecertificate sc, mdl_simplecertificate_issues sci
+	where c.id = sc.course and sci.certificateid = sc.id and sci.userid = '".$USER->id."' and sc.course = '".$COURSE->id."' and lower(sc.name) like 'certificado digital'");
+			$certificadoEmitido = $certificado->tot;
+
+			// Display the correct answer 
+			if (($certificadoEmitido == 1)) {
+				$canattempt = 0;
+			} else {
+				$canattempt = 1;
+			}
+/* customização */
+
+
 // Create an object to manage all the other (non-roles) access rules.
 $timenow = time();
 $quizobj = quiz::create($cm->instance, $USER->id);
@@ -231,6 +247,7 @@ if (!$viewobj->quizhasquestions) {
 $viewobj->showbacktocourse = ($viewobj->buttontext === '' &&
         course_get_format($course)->has_view_page());
 
+
 echo $OUTPUT->header();
 
 if (isguestuser()) {
@@ -243,5 +260,4 @@ if (isguestuser()) {
 } else {
     echo $output->view_page($course, $quiz, $cm, $context, $viewobj);
 }
-
 echo $OUTPUT->footer();

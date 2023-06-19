@@ -16,7 +16,7 @@
 /**
  * Module to enable inline editing of a comptency grade.
  *
- * @module     tool_lp/user_competency_course_navigation
+ * @package    tool_lp
  * @copyright  2015 Damyon Wiese
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -26,7 +26,6 @@ define(['jquery'], function($) {
     /**
      * UserCompetencyCourseNavigation
      *
-     * @class tool_lp/user_competency_course_navigation
      * @param {String} userSelector The selector of the user element.
      * @param {String} competencySelector The selector of the competency element.
      * @param {String} baseUrl The base url for the page (no params).
@@ -68,16 +67,17 @@ define(['jquery'], function($) {
         document.location = this._baseUrl + queryStr;
     };
 
-    /** @property {Number} The id of the competency. */
+    /** @type {Number} The id of the competency. */
     UserCompetencyCourseNavigation.prototype._competencyId = null;
-    /** @property {Number} The id of the user. */
+    /** @type {Number} The id of the user. */
     UserCompetencyCourseNavigation.prototype._userId = null;
-    /** @property {Number} The id of the course. */
+    /** @type {Number} The id of the course. */
     UserCompetencyCourseNavigation.prototype._courseId = null;
-    /** @property {String} Plugin base url. */
+    /** @type {String} Plugin base url. */
     UserCompetencyCourseNavigation.prototype._baseUrl = null;
-    /** @property {Boolean} Ignore the first change event for competencies. */
+    /** @type {Boolean} Ignore the first change event for competencies. */
     UserCompetencyCourseNavigation.prototype._ignoreFirstCompetency = null;
 
-    return UserCompetencyCourseNavigation;
+    return /** @alias module:tool_lp/user_competency_course_navigation */ UserCompetencyCourseNavigation;
+
 });

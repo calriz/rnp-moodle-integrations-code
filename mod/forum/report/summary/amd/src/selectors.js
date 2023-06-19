@@ -17,6 +17,7 @@
  * Module containing the selectors for the forum summary report.
  *
  * @module     forumreport_summary/selectors
+ * @package    forumreport_summary
  * @copyright  2019 Jun Pataleta
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

@@ -115,13 +115,10 @@
             span {
                 display: none;
             }
-            .title {
-                display: inline;
-            }
             &.dir-none .default,
             &.dir-asc .asc,
             &.dir-desc .desc {
-                display: inline;
+                display: block;
             }
         }
     }

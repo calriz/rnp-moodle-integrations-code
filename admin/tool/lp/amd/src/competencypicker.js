@@ -20,7 +20,7 @@
  * This will receive a object with either a single 'competencyId', or an array in 'competencyIds'
  * depending on the value of multiSelect.
  *
- * @module     tool_lp/competencypicker
+ * @package    tool_lp
  * @copyright  2015 Frédéric Massart - FMCorz.net
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -58,31 +58,31 @@ define(['jquery',
         }
     };
 
-    /** @property {Array} The competencies fetched. */
+    /** @type {Array} The competencies fetched. */
     Picker.prototype._competencies = null;
-    /** @property {Array} The competencies that cannot be picked. */
+    /** @type {Array} The competencies that cannot be picked. */
     Picker.prototype._disallowedCompetencyIDs = null;
-    /** @property {Node} The node we attach the events to. */
+    /** @type {Node} The node we attach the events to. */
     Picker.prototype._eventNode = null;
-    /** @property {Array} The list of frameworks fetched. */
+    /** @type {Array} The list of frameworks fetched. */
     Picker.prototype._frameworks = null;
-    /** @property {Number} The current framework ID. */
+    /** @type {Number} The current framework ID. */
     Picker.prototype._frameworkId = null;
-    /** @property {Number} The page context ID. */
+    /** @type {Number} The page context ID. */
     Picker.prototype._pageContextId = null;
-    /** @property {Number} Relevant contexts inclusion. */
+    /** @type {Number} Relevant contexts inclusion. */
     Picker.prototype._pageContextIncludes = null;
-    /** @property {Dialogue} The reference to the dialogue. */
+    /** @type {Dialogue} The reference to the dialogue. */
     Picker.prototype._popup = null;
-    /** @property {String} The string we filter the competencies with. */
+    /** @type {String} The string we filter the competencies with. */
     Picker.prototype._searchText = '';
-    /** @property {Object} The competency that was selected. */
+    /** @type {Object} The competency that was selected. */
     Picker.prototype._selectedCompetencies = null;
-    /** @property {Boolean} Whether we can browse frameworks or not. */
+    /** @type {Boolean} Whether we can browse frameworks or not. */
     Picker.prototype._singleFramework = false;
-    /** @property {Boolean} Do we allow multi select? */
+    /** @type {Boolean} Do we allow multi select? */
     Picker.prototype._multiSelect = true;
-    /** @property {Boolean} Do we allow to display hidden framework? */
+    /** @type {Boolean} Do we allow to display hidden framework? */
     Picker.prototype._onlyVisible = true;
 
     /**
@@ -468,6 +468,6 @@ define(['jquery',
         this._eventNode.trigger(type, [data]);
     };
 
-    return Picker;
+    return /** @alias module:tool_lp/competencypicker */ Picker;
 
 });

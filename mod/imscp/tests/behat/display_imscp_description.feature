@@ -25,7 +25,9 @@ Feature: Display the IMS content package description in the IMSCP and optionally
       | Description | Test IMS content package description |
     And I upload "mod/imscp/tests/packages/singlescobasic.zip" file to "Package file" filemanager
     And I click on "Save and display" "button"
-    When I am on the "Test IMS content package" "imscp activity" page
+    And I am on "Course 1" course homepage
+    And I should see "Test IMS content package"
+    When I follow "Test IMS content package"
     Then I should see "Test IMS content package description"
 
   @javascript @_file_upload
@@ -38,7 +40,9 @@ Feature: Display the IMS content package description in the IMSCP and optionally
       | Description | Test IMS content package description |
     And I upload "mod/imscp/tests/packages/singlescobasic.zip" file to "Package file" filemanager
     And I click on "Save and display" "button"
-    When I am on the "Test IMS content package" "imscp activity editing" page
+    And I am on "Course 1" course homepage
+    And I follow "Test IMS content package"
+    And I navigate to "Edit settings" in current page administration
     And the following fields match these values:
       | Display description on course page | |
     And I set the following fields to these values:
@@ -57,7 +61,9 @@ Feature: Display the IMS content package description in the IMSCP and optionally
       | Description | Test IMS content package description |
     And I upload "mod/imscp/tests/packages/singlescobasic.zip" file to "Package file" filemanager
     And I click on "Save and display" "button"
-    When I am on the "Test IMS content package" "imscp activity editing" page
+    And I am on "Course 1" course homepage
+    And I follow "Test IMS content package"
+    And I navigate to "Edit settings" in current page administration
     And the following fields match these values:
       | Display description on course page | |
     And I press "Save and return to course"

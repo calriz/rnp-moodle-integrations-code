@@ -48,10 +48,29 @@ $PAGE->set_url('/enrol/self/unenrolself.php', array('enrolid'=>$instance->id));
 $PAGE->set_title($plugin->get_instance_name($instance));
 
 if ($confirm and confirm_sesskey()) {
+	
+	/* CUSTOMIZAÇÃO IFRS */
+	$instituicao = $DB->get_record('customfield_data', array('fieldid'=>2, 'instanceid'=>$course->id), 'value', MUST_EXIST);
+	$campus = $DB->get_record('customfield_data', array('fieldid'=>3, 'instanceid'=>$course->id), 'value', MUST_EXIST);
+	$nomecursocert = $DB->get_record('simplecertificate', array('name'=>'Certificado digital', 'course'=>$course->id), 'coursename', MUST_EXIST);
+	$data = new stdClass();
+	$data->dia = date("Ymd");
+	$data->cpf = $USER->profile['CPF'];
+	$data->studentname = $USER->firstname.' '.$USER->lastname;
+	$data->cor = $USER->profile['Corraa'];
+	$data->renda = $USER->profile['Rendapercapitafamliar'];
+	$data->coursename = $nomecursocert->coursename;
+	$data->email = $USER->email;
+	$data->instituicao = $instituicao->value;
+	$data->campus = $campus->value;
+	$data->situacao = 0;
+	$data->timemodified = time();
+	$DB->insert_record('ifrs_sistec', $data, true);
+	/* CUSTOMIZAÇÃO IFRS */
+	
     $plugin->unenrol_user($instance, $USER->id);
 
-    \core\notification::success(get_string('youunenrolledfromcourse', 'enrol', format_string($course->fullname, true,
-        ["context" => $context])));
+    \core\notification::success(get_string('youunenrolledfromcourse', 'enrol', $course->fullname));
 
     redirect(new moodle_url('/index.php'));
 }

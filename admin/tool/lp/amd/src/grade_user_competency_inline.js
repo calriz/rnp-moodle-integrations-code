@@ -16,7 +16,7 @@
 /**
  * Module to enable inline editing of a comptency grade.
  *
- * @module     tool_lp/grade_user_competency_inline
+ * @package    tool_lp
  * @copyright  2015 Damyon Wiese
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -33,7 +33,6 @@ define(['jquery',
     /**
      * InlineEditor
      *
-     * @class tool_lp/grade_user_competency_inline
      * @param {String} selector The selector to trigger the grading.
      * @param {Number} scaleId The id of the scale for this competency.
      * @param {Number} competencyId The id of the competency.
@@ -142,20 +141,21 @@ define(['jquery',
         .fail(notification.exception);
     };
 
-    /** @property {Number} The scale id for this competency. */
+    /** @type {Number} The scale id for this competency. */
     InlineEditor.prototype._scaleId = null;
-    /** @property {Number} The id of the competency. */
+    /** @type {Number} The id of the competency. */
     InlineEditor.prototype._competencyId = null;
-    /** @property {Number} The id of the user. */
+    /** @type {Number} The id of the user. */
     InlineEditor.prototype._userId = null;
-    /** @property {Number} The id of the plan. */
+    /** @type {Number} The id of the plan. */
     InlineEditor.prototype._planId = null;
-    /** @property {Number} The id of the course. */
+    /** @type {Number} The id of the course. */
     InlineEditor.prototype._courseId = null;
-    /** @property {String} The text for Choose rating. */
+    /** @type {String} The text for Choose rating. */
     InlineEditor.prototype._chooseStr = null;
-    /** @property {GradeDialogue} The grading dialogue. */
+    /** @type {GradeDialogue} The grading dialogue. */
     InlineEditor.prototype._dialogue = null;
 
-    return InlineEditor;
+    return /** @alias module:tool_lp/grade_user_competency_inline */ InlineEditor;
+
 });

@@ -30,4 +30,4 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['parentlanguage'] = 'lt';
-$string['thislanguage'] = 'Lietuvių (universitetas)';
+$string['thislanguage'] = 'Lietuvių';

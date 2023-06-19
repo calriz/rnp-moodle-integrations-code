@@ -68,7 +68,6 @@ class behat_qtype_ddmarker extends behat_base {
         // DOM node so that its centre is over the centre of anothe DOM node.
         // Therefore to make it drag to the specified place, we have to add
         // a target div.
-        $markerxpath = $this->marker_xpath($marker);
         $this->execute_script("
                 (function() {
                     if (document.getElementById('target-{$x}-{$y}')) {
@@ -79,15 +78,8 @@ class behat_qtype_ddmarker extends behat_base {
                     target.setAttribute('id', 'target-{$x}-{$y}');
                     var container = document.querySelector('.droparea');
                     container.insertBefore(target, image);
-                    var widthRatio = image.offsetWidth / image.naturalWidth;
-                    var heightRatio = image.offsetHeight / image.naturalHeight;
-                    var marker = document.evaluate('{$markerxpath}', document, null, XPathResult.ANY_TYPE, null).iterateNext();
-                    var xadjusted = {$x} * widthRatio
-                                    + (container.offsetWidth - image.offsetWidth) / 2
-                                    + marker.offsetWidth / 2;
-                    var yadjusted = {$y} * heightRatio
-                                    + (container.offsetHeight - image.offsetHeight) / 2
-                                    + marker.offsetHeight / 2;
+                    var xadjusted = {$x} + (container.offsetWidth - image.offsetWidth) / 2;
+                    var yadjusted = {$y} + (container.offsetHeight - image.offsetHeight) / 2;
                     target.style.setProperty('position', 'absolute');
                     target.style.setProperty('left', xadjusted + 'px');
                     target.style.setProperty('top', yadjusted + 'px');
@@ -97,7 +89,7 @@ class behat_qtype_ddmarker extends behat_base {
         );
 
         $generalcontext = behat_context_helper::get('behat_general');
-        $generalcontext->i_drag_and_i_drop_it_in($markerxpath,
+        $generalcontext->i_drag_and_i_drop_it_in($this->marker_xpath($marker),
                 'xpath_element', "#target-{$x}-{$y}", 'css_element');
     }
 

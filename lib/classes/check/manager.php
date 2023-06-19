@@ -78,7 +78,7 @@ class manager {
             foreach ($plugins as $plugin => $pluginfunction) {
                 $result = $pluginfunction();
                 foreach ($result as $check) {
-                    $check->set_component($plugintype . '_' . $plugin);
+                    $check->component = $plugintype .  '_' . $plugin;
                     $checks[] = $check;
                 }
             }

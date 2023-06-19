@@ -17,9 +17,11 @@
  * AMD code for the frequently used comments chooser for the marking guide grading form.
  *
  * @module     gradingform_guide/comment_chooser
+ * @class      comment_chooser
+ * @package    core
  * @copyright  2015 Jun Pataleta <jun@moodle.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
+  */
 define(['jquery', 'core/templates', 'core/notification', 'core/yui'], function($, templates, notification) {
 
     // Private variables and functions.

@@ -684,10 +684,7 @@ class grade_report_grader extends grade_report {
         $headerrow->attributes['class'] = 'heading';
 
         $studentheader = new html_table_cell();
-        // The browser's scrollbar may partly cover (in certain operative systems) the content in the student header
-        // when horizontally scrolling through the table contents (most noticeable when in RTL mode).
-        // Therefore, add slight padding on the left or right when using RTL mode.
-        $studentheader->attributes['class'] = "header pl-3";
+        $studentheader->attributes['class'] = 'header';
         $studentheader->scope = 'col';
         $studentheader->header = true;
         $studentheader->id = 'studentheader';
@@ -748,10 +745,6 @@ class grade_report_grader extends grade_report {
                 $icon = $OUTPUT->pix_icon('i/enrolmentsuspended', $suspendedstring);
                 $usercell->text .= html_writer::tag('span', $icon, array('class'=>'usersuspendedicon'));
             }
-            // The browser's scrollbar may partly cover (in certain operative systems) the content in the user cells
-            // when horizontally scrolling through the table contents (most noticeable when in RTL mode).
-            // Therefore, add slight padding on the left or right when using RTL mode.
-            $usercell->attributes['class'] .= ' pl-3';
 
             $userrow->cells[] = $usercell;
 
@@ -1087,13 +1080,10 @@ class grade_report_grader extends grade_report {
                 }
 
                 $gradepass = ' gradefail ';
-                $gradepassicon = $OUTPUT->pix_icon('i/invalid', get_string('fail', 'grades'));
                 if ($grade->is_passed($item)) {
                     $gradepass = ' gradepass ';
-                    $gradepassicon = $OUTPUT->pix_icon('i/valid', get_string('pass', 'grades'));
                 } else if (is_null($grade->is_passed($item))) {
                     $gradepass = '';
-                    $gradepassicon = '';
                 }
 
                 // if in editing mode, we need to print either a text box
@@ -1145,12 +1135,10 @@ class grade_report_grader extends grade_report {
 
                             // invalid grade if gradeval < 1
                             if ($gradeval < 1) {
-                                $itemcell->text .= $gradepassicon .
-                                    "<span class='gradevalue{$hidden}{$gradepass}'>-</span>";
+                                $itemcell->text .= "<span class='gradevalue{$hidden}{$gradepass}'>-</span>";
                             } else {
                                 $gradeval = $grade->grade_item->bounded_grade($gradeval); //just in case somebody changes scale
-                                $itemcell->text .= $gradepassicon .
-                                    "<span class='gradevalue{$hidden}{$gradepass}'>{$scales[$gradeval - 1]}</span>";
+                                $itemcell->text .= "<span class='gradevalue{$hidden}{$gradepass}'>{$scales[$gradeval - 1]}</span>";
                             }
                         }
 
@@ -1164,7 +1152,7 @@ class grade_report_grader extends grade_report {
                                           . '" type="text" class="text" title="'. $strgrade .'" name="grade['
                                           .$userid.'][' .$item->id.']" id="grade_'.$userid.'_'.$item->id.'" value="'.$value.'" />';
                         } else {
-                            $itemcell->text .= $gradepassicon . "<span class='gradevalue{$hidden}{$gradepass}'>" .
+                            $itemcell->text .= "<span class='gradevalue{$hidden}{$gradepass}'>" .
                                     format_float($gradeval, $decimalpoints) . "</span>";
                         }
                     }
@@ -1198,7 +1186,7 @@ class grade_report_grader extends grade_report {
                     }
 
                     if ($item->needsupdate) {
-                        $itemcell->text .= $gradepassicon . "<span class='gradingerror{$hidden}{$gradepass}'>" . $error . "</span>";
+                        $itemcell->text .= "<span class='gradingerror{$hidden}{$gradepass}'>" . $error . "</span>";
                     } else {
                         // The max and min for an aggregation may be different to the grade_item.
                         if (!is_null($gradeval)) {
@@ -1206,7 +1194,7 @@ class grade_report_grader extends grade_report {
                             $item->grademin = $grade->get_grade_min();
                         }
 
-                        $itemcell->text .= $gradepassicon . "<span class='gradevalue{$hidden}{$gradepass}'>" .
+                        $itemcell->text .= "<span class='gradevalue{$hidden}{$gradepass}'>" .
                                 grade_format_gradevalue($gradeval, $item, true, $gradedisplaytype, null) . "</span>";
                         if ($showanalysisicon) {
                             $itemcell->text .= $this->gtree->get_grade_analysis_icon($grade);
@@ -1674,10 +1662,9 @@ class grade_report_grader extends grade_report {
         }
 
         $name = $element['object']->get_name();
-        $nameunescaped = $element['object']->get_name(false);
         $describedbyid = uniqid();
         $courseheader = html_writer::tag('span', $name, [
-            'title' => $nameunescaped,
+            'title' => $name,
             'class' => 'gradeitemheader',
             'aria-describedby' => $describedbyid
         ]);

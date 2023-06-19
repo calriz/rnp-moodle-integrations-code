@@ -21,7 +21,9 @@ Feature: Exporting and importing feedbacks
       | feedback   | Learning experience | C1     | feedback0   |
 
   Scenario: Export sample feedback and compare with the fixture
-    When I am on the "Learning experience" "feedback activity" page logged in as teacher
+    When I log in as "teacher"
+    And I am on "Course 1" course homepage
+    And I follow "Learning experience"
     And I click on "Edit questions" "link" in the "[role=main]" "css_element"
     And I add a "Information" question to the feedback with:
       | Question         | this is an information question |
@@ -71,7 +73,9 @@ Feature: Exporting and importing feedbacks
 
   @javascript @_file_upload
   Scenario: Import feedback deleting old items
-    When I am on the "Learning experience" "feedback activity" page logged in as teacher
+    When I log in as "teacher"
+    And I am on "Course 1" course homepage
+    And I follow "Learning experience"
     And I click on "Edit questions" "link" in the "[role=main]" "css_element"
     And I add a "Numeric answer" question to the feedback with:
       | Question               | Existing question |
@@ -92,10 +96,13 @@ Feature: Exporting and importing feedbacks
     And I should see "this is a multiple choice rated"
     And I should see "this is a numeric answer"
     And I should see "this is a short text answer"
+    And I log out
 
   @javascript @_file_upload
   Scenario: Import feedback appending new items
-    When I am on the "Learning experience" "feedback activity" page logged in as teacher
+    When I log in as "teacher"
+    And I am on "Course 1" course homepage
+    And I follow "Learning experience"
     And I click on "Edit questions" "link" in the "[role=main]" "css_element"
     And I add a "Numeric answer" question to the feedback with:
       | Question               | Existing question |
@@ -118,3 +125,4 @@ Feature: Exporting and importing feedbacks
     And I should see "this is a multiple choice rated"
     And I should see "this is a numeric answer"
     And I should see "this is a short text answer"
+    And I log out

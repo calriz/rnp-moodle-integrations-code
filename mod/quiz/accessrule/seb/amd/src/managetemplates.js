@@ -2,6 +2,8 @@
  * Template management code.
  *
  * @module quizaccess_seb/managetemplates
+ * @class managetemplates
+ * @package quizaccess_seb
  * @copyright  2020 Dmitrii Metelkin <dmitriim@catalyst-au.net>
  */
 define(

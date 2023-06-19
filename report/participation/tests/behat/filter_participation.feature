@@ -16,13 +16,12 @@ Feature: In a participation report, admin can filter student actions
       | user | course | role |
       | teacher1 | C1 | editingteacher |
       | student1 | C1 | student |
-    And the following "activity" exists:
-      | course      | C1             |
-      | activity    | book           |
-      | name        | Test book name |
-      | description | Test book      |
-      | idnumber    | book1          |
-    And I am on the "Test book name" "book activity" page logged in as teacher1
+    And I log in as "teacher1"
+    And I am on "Course 1" course homepage with editing mode on
+    And I add a "Book" to section "1" and I fill the form with:
+      | Name | Test book name |
+      | Description | Test book |
+    And I follow "Test book name"
     And I set the following fields to these values:
       | Chapter title | Test chapter |
       | Content | Test chapter content |
@@ -37,11 +36,12 @@ Feature: In a participation report, admin can filter student actions
     And the following config values are set as admin:
       | loglegacy | 1 | logstore_legacy |
     And I log out
-
-    And I am on the "Test book name" "book activity" page logged in as student1
+    And I log in as "student1"
+    And I am on "Course 1" course homepage
+    And I follow "Test book name"
     And I log out
-
-    When I am on the "Course 1" course page logged in as admin
+    When I log in as "admin"
+    And I am on "Course 1" course homepage
     When I navigate to "Reports > Course participation" in current page administration
     And I set the field "instanceid" to "Test book name"
     And I set the field "roleid" to "Student"
@@ -57,18 +57,18 @@ Feature: In a participation report, admin can filter student actions
     And the following config values are set as admin:
       | loglegacy | 1 | logstore_legacy |
     And I log out
-
-    And I am on the "Test book name" "book activity" page logged in as student1
+    And I log in as "student1"
+    And I am on "Course 1" course homepage
+    And I follow "Test book name"
     And I log out
-
     And I log in as "admin"
     And I navigate to "Plugins > Logging > Manage log stores" in site administration
     And I click on "Enable" "link" in the "Standard log" "table_row"
     And I log out
-
-    And I am on the "Test book name" "book activity" page logged in as student1
+    And I log in as "student1"
+    And I am on "Course 1" course homepage
+    And I follow "Test book name"
     And I log out
-
     And I log in as "admin"
     And I am on "Course 1" course homepage
     When I navigate to "Reports > Course participation" in current page administration
@@ -79,9 +79,10 @@ Feature: In a participation report, admin can filter student actions
 
   @javascript
   Scenario: Filter participation report when only standard log reader is enabled by default
-    Given I am on the "Test book name" "book activity" page logged in as student1
+    Given I log in as "student1"
+    And I am on "Course 1" course homepage
+    And I follow "Test book name"
     And I log out
-
     And I log in as "admin"
     And I am on "Course 1" course homepage
     When I navigate to "Reports > Course participation" in current page administration

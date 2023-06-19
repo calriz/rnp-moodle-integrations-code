@@ -40,7 +40,9 @@ Feature: Message users in the summary report
     And the following "course enrolments" exist:
       | user     | course | role    |
       | student3 | C1     | student |
-    When I am on the forum1 "forum activity" page logged in as teacher1
+    When I log in as "teacher1"
+    And I am on "Course 1" course homepage
+    And I follow "forum1"
     And I navigate to "Forum summary report" in current page administration
     And I click on "Select 'Student 1'" "checkbox"
     And I click on "Select 'Student 3'" "checkbox"
@@ -60,7 +62,9 @@ Feature: Message users in the summary report
 
   @javascript
   Scenario: Message all users
-    When I am on the forum1 "forum activity" page logged in as teacher1
+    When I log in as "teacher1"
+    And I am on "Course 1" course homepage
+    And I follow "forum1"
     And I navigate to "Forum summary report" in current page administration
     And I click on "Select all" "checkbox"
     And I set the field "With selected users..." to "Send a message"
@@ -68,9 +72,13 @@ Feature: Message users in the summary report
 
   @javascript
   Scenario: Ensure no message options when messaging is disabled
-    Given the following config values are set as admin:
+    Given I log in as "admin"
+    And I set the following administration settings values:
       | messaging | 0 |
-    When I am on the forum1 "forum activity" page logged in as teacher1
+    And I log out
+    And I log in as "teacher1"
+    And I am on "Course 1" course homepage
+    And I follow "forum1"
     And I navigate to "Forum summary report" in current page administration
     Then I should not see "With selected users..."
     And I should not see "Select all"

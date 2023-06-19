@@ -22,6 +22,7 @@
  * selected. (Or a single node if multiselect is disabled).
  *
  * @module     tool_lp/tree
+ * @package    core
  * @copyright  2015 Damyon Wiese <damyon@moodle.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -574,6 +575,8 @@ define(['jquery', 'core/url', 'core/log'], function($, url, log) {
      * Handle a blur event
      *
      * @method handleBlur
+     * @param {Object} item item is the jquery id of the parent item of the group
+     * @param {Event} e The event.
      * @return {Boolean}
      */
     Tree.prototype.handleBlur = function() {
@@ -585,6 +588,7 @@ define(['jquery', 'core/url', 'core/log'], function($, url, log) {
      *
      * @method handleFocus
      * @param {Object} item item is the jquery id of the parent item of the group
+     * @param {Event} e The event.
      * @return {Boolean}
      */
     Tree.prototype.handleFocus = function(item) {

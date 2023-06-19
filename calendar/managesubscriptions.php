@@ -37,7 +37,7 @@ $groupcourseid  = optional_param('groupcourseid', 0, PARAM_INT);
 $action = optional_param('action', '', PARAM_INT);
 
 $url = new moodle_url('/calendar/managesubscriptions.php');
-if ($courseid != SITEID && !empty($courseid)) {
+if ($courseid != SITEID) {
     $url->param('course', $courseid);
 }
 if ($categoryid) {
@@ -77,10 +77,12 @@ $customdata = [
     'courseid' => $course->id,
     'groups' => $groups,
 ];
-$form = new \core_calendar\local\event\forms\managesubscriptions($url, $customdata);
+$form = new \core_calendar\local\event\forms\managesubscriptions(null, $customdata);
 $form->set_data(array(
     'course' => $course->id
 ));
+
+$importresults = '';
 
 $formdata = $form->get_data();
 if (!empty($formdata)) {
@@ -110,7 +112,6 @@ if (!empty($formdata)) {
     if (calendar_can_edit_subscription($subscriptionid)) {
         try {
             $importresults = calendar_process_subscription_row($subscriptionid, $pollinterval, $action);
-            redirect($PAGE->url, $importresults);
         } catch (moodle_exception $e) {
             // If exception caught, then user should be redirected to page where he/she came from.
             print_error($e->errorcode, $e->module, $PAGE->url);
@@ -204,7 +205,7 @@ foreach($subscriptions as $subscription) {
 }
 
 // Display a table of subscriptions.
-echo $renderer->subscription_details($courseid, $subscriptions);
+echo $renderer->subscription_details($courseid, $subscriptions, $importresults);
 // Display the add subscription form.
 $form->display();
 echo $OUTPUT->footer();

@@ -31,6 +31,6 @@ defined('MOODLE_INTERNAL') || die();
 
 $string['language'] = 'Jezik';
 $string['moodlelogo'] = 'Logotip Moodle';
-$string['next'] = 'Naprej';
+$string['next'] = 'Naslednji';
 $string['previous'] = 'Prejšnji';
 $string['reload'] = 'Ponovno naloži';

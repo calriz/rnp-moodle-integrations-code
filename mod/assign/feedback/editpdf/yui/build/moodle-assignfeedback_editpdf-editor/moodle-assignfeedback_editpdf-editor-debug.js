@@ -1863,11 +1863,9 @@ Y.extend(COLOURPICKER, M.assignfeedback_editpdf.dropdown, {
             button = Y.Node.create('<button><img alt="' + title + '" src="' + img + '"/></button>');
             button.setAttribute('data-colour', colour);
             button.setAttribute('data-rgb', rgb);
-            button.setAttribute('role', 'menuitem');
             button.setStyle('backgroundImage', 'none');
             listitem = Y.Node.create('<li/>');
             listitem.append(button);
-            listitem.setAttribute('role', 'none');
             colourlist.append(listitem);
         }, this);
 
@@ -1990,11 +1988,9 @@ Y.extend(STAMPPICKER, M.assignfeedback_editpdf.dropdown, {
             title = M.util.get_string('stamp', 'assignfeedback_editpdf');
             button = Y.Node.create('<button><img height="16" width="16" alt="' + title + '" src="' + stamp + '"/></button>');
             button.setAttribute('data-stamp', stamp);
-            button.setAttribute('role', 'menuitem');
             button.setStyle('backgroundImage', 'none');
             listitem = Y.Node.create('<li/>');
             listitem.append(button);
-            listitem.setAttribute('role', 'none');
             stamplist.append(listitem);
         }, this);
 
@@ -2611,18 +2607,9 @@ var COMMENT = function(editor, gradeid, pageno, x, y, width, colour, rawtext) {
      * @method delete_comment_later
      */
     this.delete_comment_later = function() {
-        if (this.deleteme && !this.is_menu_active()) {
+        if (this.deleteme) {
             this.remove();
         }
-    };
-
-    /**
-     * Returns true if the menu is active, false otherwise.
-     *
-     * @return bool true if menu is active, else false.
-     */
-    this.is_menu_active = function() {
-        return this.menu.get('visible');
     };
 
     /**
@@ -2642,11 +2629,11 @@ var COMMENT = function(editor, gradeid, pageno, x, y, width, colour, rawtext) {
         // Function to collapse a comment to a marker icon.
         node.collapse = function(delay) {
             node.collapse.delay = Y.later(delay, node, function() {
-                if (editor.collapsecomments && !this.is_menu_active()) {
+                if (editor.collapsecomments) {
                     container.addClass('commentcollapsed');
                 }
-            }.bind(this));
-        }.bind(this);
+            });
+        };
 
         // Function to expand a comment.
         node.expand = function() {

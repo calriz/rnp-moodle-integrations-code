@@ -56,7 +56,6 @@ class mod_quiz_preflight_check_form extends moodleform {
         }
 
         $this->add_action_buttons(true, get_string('startattempt', 'quiz'));
-        $this->set_display_vertical();
         $mform->setDisableShortforms();
     }
 

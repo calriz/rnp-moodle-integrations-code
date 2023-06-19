@@ -343,8 +343,6 @@ class lesson_page_type_multichoice extends lesson_page {
         $formattextdefoptions->context = $answerpage->context;
 
         foreach ($answers as $answer) {
-            $answertext = format_text($answer->answer,$answer->answerformat,$formattextdefoptions);
-            $correctresponsetext = html_writer::div(get_string('correctresponse', 'lesson'), 'badge badge-success');
             if ($this->properties->qoption) {
                 if ($useranswer == null) {
                     $userresponse = array();
@@ -353,7 +351,7 @@ class lesson_page_type_multichoice extends lesson_page {
                 }
                 if (in_array($answer->id, $userresponse)) {
                     // make checked
-                    $checkboxelement = "<input  readonly=\"readonly\" disabled=\"disabled\" name=\"answer[$i]\" checked=\"checked\" type=\"checkbox\" value=\"1\" />";
+                    $data = "<input  readonly=\"readonly\" disabled=\"disabled\" name=\"answer[$i]\" checked=\"checked\" type=\"checkbox\" value=\"1\" />";
                     if (!isset($answerdata->response)) {
                         if ($answer->response == null) {
                             if ($useranswer->correct) {
@@ -376,18 +374,17 @@ class lesson_page_type_multichoice extends lesson_page {
                     }
                 } else {
                     // unchecked
-                    $checkboxelement = "<input type=\"checkbox\" readonly=\"readonly\" name=\"answer[$i]\" value=\"0\" disabled=\"disabled\" />";
+                    $data = "<input type=\"checkbox\" readonly=\"readonly\" name=\"answer[$i]\" value=\"0\" disabled=\"disabled\" />";
                 }
-                $answercontent = html_writer::label($checkboxelement . ' ' . $answertext, null);
                 if (($answer->score > 0 && $this->lesson->custom) || ($this->lesson->jumpto_is_correct($this->properties->id, $answer->jumpto) && !$this->lesson->custom)) {
-                    $data = html_writer::div($answercontent, 'text-success') . $correctresponsetext;
+                    $data = "<div class=highlight>".$data.' '.format_text($answer->answer,$answer->answerformat,$formattextdefoptions)."</div>";
                 } else {
-                    $data = $answercontent;
+                    $data .= format_text($answer->answer,$answer->answerformat,$formattextdefoptions);
                 }
             } else {
                 if ($useranswer != null and $answer->id == $useranswer->answerid) {
                     // make checked
-                    $checkboxelement = "<input  readonly=\"readonly\" disabled=\"disabled\" name=\"answer[$i]\" checked=\"checked\" type=\"checkbox\" value=\"1\" />";
+                    $data = "<input  readonly=\"readonly\" disabled=\"disabled\" name=\"answer[$i]\" checked=\"checked\" type=\"checkbox\" value=\"1\" />";
                     if ($answer->response == null) {
                         if ($useranswer->correct) {
                             $answerdata->response = get_string("thatsthecorrectanswer", "lesson");
@@ -406,13 +403,12 @@ class lesson_page_type_multichoice extends lesson_page {
                     }
                 } else {
                     // unchecked
-                    $checkboxelement = "<input type=\"checkbox\" readonly=\"readonly\" name=\"answer[$i]\" value=\"0\" disabled=\"disabled\" />";
+                    $data = "<input type=\"checkbox\" readonly=\"readonly\" name=\"answer[$i]\" value=\"0\" disabled=\"disabled\" />";
                 }
-                $answercontent = html_writer::label($checkboxelement . ' ' . $answertext, null);
                 if (($answer->score > 0 && $this->lesson->custom) || ($this->lesson->jumpto_is_correct($this->properties->id, $answer->jumpto) && !$this->lesson->custom)) {
-                    $data = html_writer::div($answercontent, 'text-success') . $correctresponsetext;
+                    $data = "<div class=\"highlight\">".$data.' '.format_text($answer->answer,FORMAT_MOODLE,$formattextdefoptions)."</div>";
                 } else {
-                    $data = $answercontent;
+                    $data .= format_text($answer->answer,$answer->answerformat,$formattextdefoptions);
                 }
             }
             if (isset($pagestats[$this->properties->id][$answer->id])) {

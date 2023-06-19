@@ -16,7 +16,7 @@
 /**
  * Module to enable inline editing of a comptency grade.
  *
- * @module report_competency/grading_popup
+ * @package    report_competency
  * @copyright  2015 Damyon Wiese
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -27,7 +27,6 @@ define(['jquery', 'core/notification', 'core/str', 'core/ajax', 'core/log', 'cor
     /**
      * GradingPopup
      *
-     * @class report_competency/grading_popup
      * @param {String} regionSelector The regionSelector
      * @param {String} userCompetencySelector The userCompetencySelector
      */
@@ -137,10 +136,11 @@ define(['jquery', 'core/notification', 'core/str', 'core/ajax', 'core/log', 'cor
         .catch(notification.exception);
     };
 
-    /** @property {String} The selector for the region with the user competencies */
+    /** @type {String} The selector for the region with the user competencies */
     GradingPopup.prototype._regionSelector = null;
-    /** @property {String} The selector for the region with a single user competencies */
+    /** @type {String} The selector for the region with a single user competencies */
     GradingPopup.prototype._userCompetencySelector = null;
 
-    return GradingPopup;
+    return /** @alias module:report_competency/grading_popup */ GradingPopup;
+
 });

@@ -17,6 +17,7 @@
  * Grading panel for simple direct grading.
  *
  * @module     core_grades/grades/grader/gradingpanel/point
+ * @package    core_grades
  * @copyright  2019 Andrew Nicols <andrew@nicols.co.uk>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -30,13 +31,12 @@ import {invalidResult} from './normalise';
 /**
  * Fetch the current grade for a user.
  *
- * @param {object} args
- * @param {String} args.component
- * @param {Number} args.context
- * @param {String} args.itemname
- * @param {Number} args.userId
- * @param {Element} args.rootNode
- * @returns {Object}
+ * @param {String} component
+ * @param {Number} context
+ * @param {String} itemname
+ * @param {Number} userId
+ * @param {Element} rootNode
+ * @return {Object}
  */
 export const fetchCurrentGrade = (...args) => fetchGrade('point')(...args);
 
@@ -49,7 +49,8 @@ export const fetchCurrentGrade = (...args) => fetchGrade('point')(...args);
  * @param {Number} userId
  * @param {Boolean} notifyUser
  * @param {Element} rootNode
- * @returns {Object}
+ *
+ * @return {Object}
  */
 export const storeCurrentGrade = async(component, context, itemname, userId, notifyUser, rootNode) => {
     const form = rootNode.querySelector('form');

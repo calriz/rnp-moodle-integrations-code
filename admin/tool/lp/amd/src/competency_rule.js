@@ -16,7 +16,7 @@
 /**
  * Competency rule base module.
  *
- * @module     tool_lp/competencyrule
+ * @package    tool_lp
  * @copyright  2015 Frédéric Massart - FMCorz.net
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -40,13 +40,13 @@ define(['jquery'], function($) {
         this._tree = tree;
     };
 
-    /** @property {Object} The current competency. */
+    /** @type {Object} The current competency. */
     Rule.prototype._competency = null;
-    /** @property {Node} The node we attach the events to. */
+    /** @type {Node} The node we attach the events to. */
     Rule.prototype._eventNode = null;
-    /** @property {Promise} Resolved when the object is ready. */
+    /** @type {Promise} Resolved when the object is ready. */
     Rule.prototype._ready = null;
-    /** @property {Tree} The competency tree. */
+    /** @type {Tree} The competency tree. */
     Rule.prototype._tree = null;
 
     /**
@@ -71,14 +71,13 @@ define(['jquery'], function($) {
         return null;
     };
 
-    // eslint-disable-line valid-jsdoc
+    // eslint-disable-next-line valid-jsdoc
     /**
      * Return the type of the module.
      *
      * @return {String}
      * @method getType
      */
-    // eslint-enable-line valid-jsdoc
     Rule.prototype.getType = function() {
         throw new Error('Not implemented');
     };
@@ -98,7 +97,8 @@ define(['jquery'], function($) {
     /**
      * Callback to inject the template.
      *
-     * @returns {Promise} Resolved when done.
+     * @param  {Node} container Node to inject in.
+     * @return {Promise} Resolved when done.
      * @method injectTemplate
      */
     Rule.prototype.injectTemplate = function() {

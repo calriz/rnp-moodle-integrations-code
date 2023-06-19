@@ -16,7 +16,9 @@
 /**
  * Contain the logic for the quick add or update event modal.
  *
- * @module     core_calendar/modal_quick_add_event
+ * @module     calendar/modal_quick_add_event
+ * @class      modal_quick_add_event
+ * @package    core
  * @copyright  2017 Ryan Wyllie <ryan@moodle.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

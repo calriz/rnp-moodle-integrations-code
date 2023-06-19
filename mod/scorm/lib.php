@@ -1008,9 +1008,6 @@ function scorm_pluginfile($course, $cm, $context, $filearea, $args, $forcedownlo
         return false;
     }
 
-    // Allow SVG files to be loaded within SCORM content, instead of forcing download.
-    $options['dontforcesvgdownload'] = true;
-
     // Finally send the file.
     send_stored_file($file, $lifetime, 0, false, $options);
 }

@@ -19,6 +19,7 @@
  * This takes care of applying the filter on content which was dynamically loaded.
  *
  * @module     media_videojs/loader
+ * @package    media_videojs
  * @copyright  2016 Frédéric Massart - FMCorz.net
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -84,15 +85,6 @@ const notifyVideoJS = (e, nodes) => {
             if (config.techOrder && config.techOrder.indexOf('flash') !== -1) {
                 // Add Flash to the list of modules we require.
                 modulePromises.push(import('media_videojs/videojs-flash-lazy'));
-            }
-            if (config.techOrder && config.techOrder.indexOf('OgvJS') !== -1) {
-                config.ogvjs = {
-                    worker: true,
-                    wasm: true,
-                    base: Config.wwwroot + '/media/player/videojs/ogvloader.php/' + Config.jsrev + '/'
-                };
-                // Add Ogv.JS to the list of modules we require.
-                modulePromises.push(import('media_videojs/videojs-ogvjs-lazy'));
             }
             Promise.all([langStrings, ...modulePromises])
             .then(([langJson, videojs]) => {

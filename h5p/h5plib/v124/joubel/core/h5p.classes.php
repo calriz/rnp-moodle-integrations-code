@@ -1,9 +1,4 @@
 <?php
-
-namespace Moodle;
-
-use ZipArchive;
-
 /**
  * Interface defining functions the h5p library needs the framework to implement
  */
@@ -2062,7 +2057,7 @@ class H5PCore {
    *
    * @param H5PFrameworkInterface $H5PFramework
    *  The frameworks implementation of the H5PFrameworkInterface
-   * @param string|H5PFileStorage $path H5P file storage directory or class.
+   * @param string|\H5PFileStorage $path H5P file storage directory or class.
    * @param string $url To file storage directory.
    * @param string $language code. Defaults to english.
    * @param boolean $export enabled?
@@ -2070,7 +2065,7 @@ class H5PCore {
   public function __construct(H5PFrameworkInterface $H5PFramework, $path, $url, $language = 'en', $export = FALSE) {
     $this->h5pF = $H5PFramework;
 
-    $this->fs = ($path instanceof H5PFileStorage ? $path : new H5PDefaultStorage($path));
+    $this->fs = ($path instanceof \H5PFileStorage ? $path : new \H5PDefaultStorage($path));
 
     $this->url = $url;
     $this->exportEnabled = $export;

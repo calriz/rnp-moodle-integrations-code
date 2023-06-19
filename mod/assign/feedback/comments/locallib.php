@@ -348,11 +348,7 @@ class assign_feedback_comments extends assign_feedback_plugin {
             $feedbackcomments = $this->get_feedback_comments($grade->id);
         }
 
-        // Check first for data from last form submission in case grading validation failed.
-        if (!empty($data->assignfeedbackcomments_editor['text'])) {
-            $data->assignfeedbackcomments = $data->assignfeedbackcomments_editor['text'];
-            $data->assignfeedbackcommentsformat = $data->assignfeedbackcomments_editor['format'];
-        } else if ($feedbackcomments && !empty($feedbackcomments->commenttext)) {
+        if ($feedbackcomments && !empty($feedbackcomments->commenttext)) {
             $data->assignfeedbackcomments = $feedbackcomments->commenttext;
             $data->assignfeedbackcommentsformat = $feedbackcomments->commentformat;
         } else {

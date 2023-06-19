@@ -413,21 +413,10 @@ class mod_quiz_external extends external_api {
             require_capability('mod/quiz:viewreports', $context);
         }
 
-        // Update quiz with override information.
-        $quiz = quiz_update_effective_access($quiz, $params['userid']);
         $attempts = quiz_get_user_attempts($quiz->id, $user->id, $params['status'], $params['includepreviews']);
-        $attemptresponse = [];
-        foreach ($attempts as $attempt) {
-            $reviewoptions = quiz_get_review_options($quiz, $attempt, $context);
-            if (!has_capability('mod/quiz:viewreports', $context) &&
-                    ($reviewoptions->marks < question_display_options::MARK_AND_MAX || $attempt->state != quiz_attempt::FINISHED)) {
-                // Blank the mark if the teacher does not allow it.
-                $attempt->sumgrades = null;
-            }
-            $attemptresponse[] = $attempt;
-        }
+
         $result = array();
-        $result['attempts'] = $attemptresponse;
+        $result['attempts'] = $attempts;
         $result['warnings'] = $warnings;
         return $result;
     }

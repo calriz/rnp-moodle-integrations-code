@@ -16,7 +16,6 @@
 /**
  * Manage user scroll in Moodle for future floating elements.
  *
- * @module theme_boost/scroll
  * @copyright  2020 Ferran Recio <ferran@moodle.org>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -26,7 +25,7 @@
  * on the body tag but in the near future could handle more floating
  * elements like option bars, docked elements or other active elements.
  *
- * @class theme_boost/scroll
+ * @class MoodleScroll
  */
 export default class MoodleScroll {
 

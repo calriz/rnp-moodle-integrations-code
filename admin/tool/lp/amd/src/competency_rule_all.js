@@ -16,7 +16,7 @@
 /**
  * Competency rule all module.
  *
- * @module     tool_lp/competency_rule_all
+ * @package    tool_lp
  * @copyright  2015 Frédéric Massart - FMCorz.net
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -29,8 +29,6 @@ define(['jquery',
 
     /**
      * Competency rule all class.
-     *
-     * @class tool_lp/competency_rule_all
      */
     var Rule = function() {
         RuleBase.apply(this, arguments);
@@ -57,5 +55,6 @@ define(['jquery',
         return true;
     };
 
-    return Rule;
+    return /** @alias module:tool_lp/competency_rule_all */ Rule;
+
 });

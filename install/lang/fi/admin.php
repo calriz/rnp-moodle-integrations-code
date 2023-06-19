@@ -39,4 +39,3 @@ $string['cliunknowoption'] = 'Tunnistamaton valinta: {$a} Ole hyvä ja käytä -
 $string['cliyesnoprompt'] = 'syötä k (kyllä) tai e (ei)';
 $string['environmentrequireinstall'] = 'pitää olla asennettuna ja käytössä';
 $string['environmentrequireversion'] = 'versio {$a->needed} vaaditaan ja käytössä on versio {$a->current}';
-$string['upgradekeyset'] = 'Päivitysavain (jätä tyhjäksi, jos et halua asettaa sitä)';

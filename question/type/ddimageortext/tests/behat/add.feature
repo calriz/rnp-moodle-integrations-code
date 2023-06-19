@@ -6,19 +6,21 @@ Feature: Test creating a drag and drop onto image question
 
   Background:
     Given the following "users" exist:
-      | username |
-      | teacher  |
+      | username | firstname | lastname | email               |
+      | teacher1 | T1        | Teacher1 | teacher1@moodle.com |
     And the following "courses" exist:
       | fullname | shortname | category |
       | Course 1 | C1        | 0        |
     And the following "course enrolments" exist:
       | user     | course | role           |
-      | teacher  | C1     | editingteacher |
+      | teacher1 | C1     | editingteacher |
+    And I log in as "teacher1"
+    And I am on "Course 1" course homepage
+    And I navigate to "Question bank" in current page administration
 
   @javascript @_file_upload
   Scenario: Create a drag and drop onto image question
-    When I am on the "Course 1" "core_question > course question bank" page logged in as teacher
-    And I press "Create a new question ..."
+    When I press "Create a new question ..."
     And I set the field "Drag and drop onto image" to "1"
     And I click on "Add" "button" in the "Choose a question type to add" "dialogue"
     And I set the field "Question name" to "Drag and drop onto image 001"

@@ -20,6 +20,8 @@
  * See template: mod_lti/contentitem
  *
  * @module     mod_lti/contentitem
+ * @class      contentitem
+ * @package    mod_lti
  * @copyright  2016 Jun Pataleta <jun@moodle.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  * @since      3.2
@@ -87,6 +89,8 @@ define(
 
         /**
          * Array of form fields for LTI tool configuration.
+         *
+         * @type {*[]}
          */
         var ltiFormFields = [
             new FormField('name', FormField.TYPES.TEXT, false, ''),

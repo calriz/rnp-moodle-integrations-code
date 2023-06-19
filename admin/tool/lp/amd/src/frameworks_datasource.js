@@ -18,7 +18,7 @@
  *
  * This module is compatible with core/form-autocomplete.
  *
- * @module     tool_lp/frameworks_datasource
+ * @package    tool_lpmigrate
  * @copyright  2016 Frédéric Massart - FMCorz.net
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

@@ -38,7 +38,6 @@ Utilizzare admin/cli/install_database.php per installare Moodle.';
 $string['clialreadyinstalled'] = 'Il file config.php è già presente.
 Utilizzare admin/cli/install_database.php per aggiornare Moodle.';
 $string['cliinstallheader'] = 'Programma di installazione Moodle {$a} via linea di comando';
-$string['clitablesexist'] = 'Le tabelle del database sono già presenti, l\'installazione via linea di comando non può proseguire.';
 $string['databasehost'] = 'Host database';
 $string['databasename'] = 'Nome database';
 $string['databasetypehead'] = 'Scegli un database driver';
@@ -83,7 +82,7 @@ $string['pathsunsecuredataroot'] = 'La posizione della Cartella dati non è sicu
 $string['pathswrongadmindir'] = 'La cartella Admin non esiste';
 $string['phpextension'] = '{$a} estensioni PHP';
 $string['phpversion'] = 'Versione PHP';
-$string['phpversionhelp'] = '<p>Moodle necessita come minimo della versione 5.6.5 o 7.1del PHP. (La versione 7.0.x ha alcuni limiti nel motore)</p>
+$string['phpversionhelp'] = '<p>Moodle necessita come minimo della versione 5.6.5 del PHP. (La versione 7.0.x ha alcuni limiti nell\'engine)</p>
 <p>La versione installata nel sistema è la {$a}</p>
 <p>E\' necessario aggiornare la versione del PHP oppure spostarsi su un host che abbia una versione più aggiornata del PHP.<br>';
 $string['welcomep10'] = '{$a->installername} ({$a->installerversion})';

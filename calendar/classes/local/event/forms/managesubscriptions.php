@@ -129,10 +129,8 @@ class managesubscriptions extends \moodleform {
         } else if (($data['importfrom'] == CALENDAR_IMPORT_FROM_URL)) {
             // Clean input calendar url.
             $url = clean_param($data['url'], PARAM_URL);
-            try {
-                calendar_get_icalendar($url);
-            } catch (\moodle_exception $e) {
-                $errors['url']  = get_string('errorinvalidicalurl', 'calendar');
+            if (empty($url) || ($url !== $data['url'])) {
+                $errors['url']  = get_string('invalidurl', 'error');
             }
         } else {
             // Shouldn't happen.

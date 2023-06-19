@@ -118,8 +118,7 @@ class course_exporter extends component_exporter {
 
             if ($summarydata->has_any_data()) {
                 $hascontent = true;
-                $templatedata->summary = format_text($summarydata->get_content(), $this->course->summaryformat,
-                    ['context' => $this->get_context()]);
+                $templatedata->summary = $summarydata->get_content();
             }
         }
 
@@ -162,28 +161,20 @@ class course_exporter extends component_exporter {
     protected function get_course_section(array $exportedcontexts, section_info $section): stdClass {
         $sectiondata = (object) [
             'number' => $section->section,
-            'title' => format_string($section->name, true, ['context' => $this->get_context()]),
+            'title' => $section->name,
             'summary' => '',
             'activities' => [],
         ];
 
-        // Fetch the section summary content.
-        if ($section->summary) {
-            $summarydata = $this->get_archive()->add_pluginfiles_for_content(
-                $this->get_context(),
-                '_course',
-                $section->summary,
-                'course',
-                'section',
-                $section->id,
-                $section->id
-            );
-
-            if ($summarydata->has_any_data()) {
-                $sectiondata->summary = format_text($summarydata->get_content(), $section->summaryformat,
-                    ['context' => $this->get_context()]);
-            }
-        }
+        $sectiondata->summary = $this->get_archive()->add_pluginfiles_for_content(
+            $this->get_context(),
+            "_course",
+            $section->summary,
+            'course',
+            'section',
+            $section->id,
+            $section->id
+        )->get_template_data()->content;
 
         if (empty($this->modinfo->sections[$section->section])) {
             return $sectiondata;
@@ -205,7 +196,7 @@ class course_exporter extends component_exporter {
                 $url = $cm->url;
             }
             $sectiondata->activities[] = (object) [
-                'title' => $cm->get_formatted_name(),
+                'title' => $cm->name,
                 'modname' => $cm->modfullname,
                 'link' => $url,
             ];
@@ -262,23 +253,20 @@ class course_exporter extends component_exporter {
         $cm = $this->modinfo->get_cm($modcontext->instanceid);
         $modname = $cm->modname;
 
-        $record = $DB->get_record($modname, ['id' => $cm->instance], 'intro, introformat');
+        $record = $DB->get_record($modname, ['id' => $cm->instance], 'intro');
 
-        // Fetch the module intro content.
-        if ($record->intro) {
-            $exporteditem = $this->get_archive()->add_pluginfiles_for_content(
-                $modcontext,
-                '',
-                $record->intro,
-                "mod_{$modname}",
-                'intro',
-                0,
-                null
-            );
+        $exporteditem = $this->get_archive()->add_pluginfiles_for_content(
+            $modcontext,
+            '',
+            $record->intro,
+            "mod_{$modname}",
+            'intro',
+            0,
+            null
+        );
 
-            if ($exporteditem->has_any_data()) {
-                return format_text($exporteditem->get_content(), $record->introformat, ['context' => $modcontext]);
-            }
+        if ($exporteditem->has_any_data()) {
+            return $exporteditem->get_content();
         }
 
         return null;

@@ -16,7 +16,7 @@
 /**
  * Competency rule config.
  *
- * @module     tool_lp/competencyruleconfig
+ * @package    tool_lp
  * @copyright  2015 Frédéric Massart - FMCorz.net
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -48,21 +48,21 @@ define(['jquery',
         this._setUp();
     };
 
-    /** @property {Object} The current competency. */
+    /** @type {Object} The current competency. */
     RuleConfig.prototype._competency = null;
-    /** @property {Node} The node we attach the events to. */
+    /** @type {Node} The node we attach the events to. */
     RuleConfig.prototype._eventNode = null;
-    /** @property {Array} Outcomes options. */
+    /** @type {Array} Outcomes options. */
     RuleConfig.prototype._outcomesOption = null;
-    /** @property {Dialogue} The dialogue. */
+    /** @type {Dialogue} The dialogue. */
     RuleConfig.prototype._popup = null;
-    /** @property {Promise} Resolved when the module is ready. */
+    /** @type {Promise} Resolved when the module is ready. */
     RuleConfig.prototype._ready = null;
-    /** @property {Array} The rules. */
+    /** @type {Array} The rules. */
     RuleConfig.prototype._rules = null;
-    /** @property {Array} The rules modules. */
+    /** @type {Array} The rules modules. */
     RuleConfig.prototype._rulesModules = null;
-    /** @property {competencytree} The competency tree. */
+    /** @type {competencytree} The competency tree. */
     RuleConfig.prototype._tree = null;
 
     /**
@@ -156,8 +156,9 @@ define(['jquery',
     /**
      * Opens the picker.
      *
+     * @param {Number} competencyId The competency ID of the competency to work on.
      * @method display
-     * @returns {Promise}
+     * @return {Promise}
      */
     RuleConfig.prototype.display = function() {
         var self = this;

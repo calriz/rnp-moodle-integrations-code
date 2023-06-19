@@ -78,7 +78,6 @@ class course_edit_form extends moodleform {
             if (has_capability('moodle/course:create', $categorycontext)) {
                 $displaylist = core_course_category::make_categories_list('moodle/course:create');
                 $mform->addElement('autocomplete', 'category', get_string('coursecategory'), $displaylist);
-                $mform->addRule('category', null, 'required', null, 'client');
                 $mform->addHelpButton('category', 'coursecategory');
                 $mform->setDefault('category', $category->id);
             } else {
@@ -95,7 +94,6 @@ class course_edit_form extends moodleform {
                         ->get_formatted_name();
                 }
                 $mform->addElement('autocomplete', 'category', get_string('coursecategory'), $displaylist);
-                $mform->addRule('category', null, 'required', null, 'client');
                 $mform->addHelpButton('category', 'coursecategory');
             } else {
                 //keep current

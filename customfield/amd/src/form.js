@@ -17,6 +17,7 @@
  * This module depends on the real jquery - and returns the non-global version of it.
  *
  * @module     core_customfield/form
+ * @package    core_customfield
  * @copyright  2018 Toni Barbera
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

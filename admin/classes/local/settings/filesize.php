@@ -126,7 +126,6 @@ class filesize extends \admin_setting {
         if (is_null($bytes)) {
             return null;
         }
-        $bytes = intval($bytes);
 
         return self::parse_bytes($bytes);
     }
@@ -146,10 +145,9 @@ class filesize extends \admin_setting {
             return get_string('errorsetting', 'admin');
         }
 
-        // Calculate size in bytes, ensuring we don't overflow PHP_INT_MAX.
         $bytes = $data['v'] * $data['u'];
-        $result = (is_int($bytes) && $this->config_write($this->name, $bytes));
 
+        $result = $this->config_write($this->name, $bytes);
         return ($result ? '' : get_string('errorsetting', 'admin'));
     }
 

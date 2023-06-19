@@ -16,7 +16,7 @@
 /**
  * Competency rule points module.
  *
- * @module     tool_lp/competency_rule_all
+ * @package    tool_lp
  * @copyright  2015 Frédéric Massart - FMCorz.net
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -36,9 +36,9 @@ define(['jquery',
     };
     Rule.prototype = Object.create(RuleBase.prototype);
 
-    /** @property {Node} Reference to the container in which the template was included. */
+    /** @type {Node} Reference to the container in which the template was included. */
     Rule.prototype._container = null;
-    /** @property {Boolean} Whether or not the template was included. */
+    /** @type {Boolean} Whether or not the template was included. */
     Rule.prototype._templateLoaded = false;
 
     /**
@@ -196,5 +196,6 @@ define(['jquery',
         return valid;
     };
 
-    return Rule;
+    return /** @alias module:tool_lp/competency_rule_all */ Rule;
+
 });

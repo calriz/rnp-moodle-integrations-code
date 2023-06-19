@@ -1469,10 +1469,9 @@ class grade_item extends grade_object {
      * Determines what type of grade item it is then returns the appropriate string
      *
      * @param bool $fulltotal If the item is a category total, returns $categoryname."total" instead of "Category total" or "Course total"
-     * @param bool $escape Whether the returned category name is to be HTML escaped or not.
      * @return string name
      */
-    public function get_name($fulltotal=false, $escape = true) {
+    public function get_name($fulltotal=false) {
         global $CFG;
         require_once($CFG->dirroot . '/course/lib.php');
         if (strval($this->itemname) !== '') {
@@ -1482,7 +1481,7 @@ class grade_item extends grade_object {
             $deletionpending = course_module_instance_pending_deletion($this->courseid, $this->itemmodule, $this->iteminstance);
             $deletionnotice = get_string('gradesmoduledeletionprefix', 'grades');
 
-            $options = ['context' => context_course::instance($this->courseid), 'escape' => $escape];
+            $options = ['context' => context_course::instance($this->courseid)];
             return $deletionpending ?
                 format_string($deletionnotice . ' ' . $this->itemname, true, $options) :
                 format_string($this->itemname, true, $options);
@@ -1494,7 +1493,7 @@ class grade_item extends grade_object {
             if ($fulltotal) {
                 $category = $this->load_parent_category();
                 $a = new stdClass();
-                $a->category = $category->get_name($escape);
+                $a->category = $category->get_name();
                 return get_string('categorytotalfull', 'grades', $a);
             } else {
             return get_string('categorytotal', 'grades');

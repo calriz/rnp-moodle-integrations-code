@@ -20,7 +20,7 @@
  * This will receive the information to display in popup.
  * The actions have the format [{'text': sometext, 'value' : somevalue}].
  *
- * @module     tool_lp/actionselector
+ * @package    tool_lp
  * @copyright  2016 Serge Gauthier - <serge.gauthier.2@umontreal.ca>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -35,8 +35,6 @@ define(['jquery',
 
     /**
      * Action selector class.
-     *
-     * @class tool_lp/actionselector
      * @param {String} title The title of popup.
      * @param {String} message The message to display.
      * @param {object} actions The actions that can be selected.
@@ -58,19 +56,19 @@ define(['jquery',
 
     ActionSelector.prototype = Object.create(EventBase.prototype);
 
-    /** @property {String} The value that was selected. */
+    /** @type {String} The value that was selected. */
     ActionSelector.prototype._selectedValue = null;
-    /** @property {Dialogue} The reference to the dialogue. */
+    /** @type {Dialogue} The reference to the dialogue. */
     ActionSelector.prototype._popup = null;
-    /** @property {String} The title of popup. */
+    /** @type {String} The title of popup. */
     ActionSelector.prototype._title = null;
-    /** @property {String} The message in popup. */
+    /** @type {String} The message in popup. */
     ActionSelector.prototype._message = null;
-    /** @property {object} The information for radion buttons. */
+    /** @type {object} The information for radion buttons. */
     ActionSelector.prototype._actions = null;
-    /** @property {String} The text for confirm button. */
+    /** @type {String} The text for confirm button. */
     ActionSelector.prototype._confirm = null;
-    /** @property {String} The text for cancel button. */
+    /** @type {String} The text for cancel button. */
     ActionSelector.prototype._cancel = null;
 
     /**
@@ -193,6 +191,6 @@ define(['jquery',
         this._selectedValue = '';
     };
 
-    return ActionSelector;
+    return /** @alias module:tool_lp/actionselector */ ActionSelector;
 
 });

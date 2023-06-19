@@ -98,8 +98,7 @@ switch ($action) {
                     if ($extrafields) {
                         $extrafieldsdisplay = [];
                         foreach ($extrafields as $field) {
-                            // No escaping here, handled client side in response to AJAX request.
-                            $extrafieldsdisplay[] = $member->{$field};
+                            $extrafieldsdisplay[] = s($member->{$field});
                         }
                         $shortmember->name .= ' (' . implode(', ', $extrafieldsdisplay) . ')';
                     }
@@ -195,7 +194,7 @@ if ($groups) {
         $groupoptions[] = (object) [
             'value' => $group->id,
             'selected' => $selected,
-            'text' => s($groupname)
+            'text' => $groupname
         ];
     }
 }

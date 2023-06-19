@@ -16,7 +16,7 @@
 /**
  * Module to refresh a user competency summary in a page.
  *
- * @module     tool_lp/user_competency_info
+ * @package    tool_lp
  * @copyright  2015 Damyon Wiese
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -86,25 +86,25 @@ define(['jquery', 'core/notification', 'core/ajax', 'core/templates'], function(
         }).fail(notification.exception);
     };
 
-    /** @property {JQuery} The root element to replace in the DOM. */
+    /** @type {JQuery} The root element to replace in the DOM. */
     Info.prototype._rootElement = null;
-    /** @property {Number} The id of the course. */
+    /** @type {Number} The id of the course. */
     Info.prototype._courseId = null;
-    /** @property {Boolean} Is this module valid? */
+    /** @type {Boolean} Is this module valid? */
     Info.prototype._valid = null;
-    /** @property {Number} The id of the plan. */
+    /** @type {Number} The id of the plan. */
     Info.prototype._planId = null;
-    /** @property {Number} The id of the competency. */
+    /** @type {Number} The id of the competency. */
     Info.prototype._competencyId = null;
-    /** @property {Number} The id of the user. */
+    /** @type {Number} The id of the user. */
     Info.prototype._userId = null;
-    /** @property {String} The method name to load the data. */
+    /** @type {String} The method name to load the data. */
     Info.prototype._methodName = null;
-    /** @property {Object} The arguments to load the data. */
+    /** @type {Object} The arguments to load the data. */
     Info.prototype._args = null;
-    /** @property {String} The template to reload the fragment. */
+    /** @type {String} The template to reload the fragment. */
     Info.prototype._templateName = null;
-    /** @property {Boolean} If we should display the user info? */
+    /** @type {Boolean} If we should display the user info? */
     Info.prototype._displayuser = false;
 
     return /** @alias module:tool_lp/user_competency_info */ Info;
